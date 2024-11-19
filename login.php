@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "db_id";//db ��
 
-//$loginUser = $_POST["SigninId"];
+$loginUser = $_POST["SigninId"];
 //$loginPass = $_POST["loginPass"];
 
 $conn = new mysqli($servername,
@@ -12,8 +12,8 @@ $conn = new mysqli($servername,
 								 $password,
 								 $dbname);
 
-// $sql = "SELECT * FROM tb_login WHERE id = ' " . $loginUser . " ' ";
-$sql = "INSERT INTO tb_id(id) VALUES('sdfg')";
+//$sql = "SELECT * FROM tb_login WHERE id = ' " . $loginUser . " ' ";
+$sql = "INSERT INTO tb_id(id) VALUES('".$loginUser."')";
 $conn->query($sql);
 
 // if($result->num_rows > 0 )
