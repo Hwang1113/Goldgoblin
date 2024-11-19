@@ -617,7 +617,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 304380067}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 951073912}
+        m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
+        m_MethodName: OnClickSubmit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &304380067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2457,7 +2469,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 951073912}
+        m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
+        m_MethodName: InputId
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2992,6 +3016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0afec5a5486c5145867ce6b1cdb1eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &960343379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4540,6 +4565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309590868}
+  - component: {fileID: 1309590869}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -4562,6 +4588,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309590869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309590867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebe395873fc8e942b7873c597b89e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UImg: {fileID: 951073912}
+  id: 
+  password: 
 --- !u!1 &1428028680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,7 +5328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1814528153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6202,7 +6243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1973692313
 RectTransform:
   m_ObjectHideFlags: 0
