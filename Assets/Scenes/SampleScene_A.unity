@@ -547,7 +547,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnClickIdCheck
         m_Mode: 1
@@ -597,6 +597,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100898203}
   m_CullTransparentMesh: 1
+--- !u!1 &148077171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148077175}
+  - component: {fileID: 148077174}
+  - component: {fileID: 148077173}
+  - component: {fileID: 148077172}
+  m_Layer: 5
+  m_Name: InGameCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &148077172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148077171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &148077173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148077171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &148077174
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148077171}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &148077175
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148077171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &209282797
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +817,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputRecoveryAnswer
         m_Mode: 0
@@ -1541,7 +1642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnClickSubmit
         m_Mode: 1
@@ -2258,13 +2359,14 @@ GameObject:
   - component: {fileID: 468024746}
   - component: {fileID: 468024745}
   - component: {fileID: 468024744}
+  - component: {fileID: 468024748}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: LoginCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &468024744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2349,6 +2451,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &468024748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468024743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0afec5a5486c5145867ce6b1cdb1eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  login_Error: {fileID: 301275903}
+  signup_idError: {fileID: 1428028682}
+  signup_pwError: {fileID: 1814528154}
+  signup_BirthDateError: {fileID: 1221612619}
+  loginMenu: {fileID: 301275900}
+  signupMenu: {fileID: 1221012532}
+  id: 
 --- !u!1 &480511303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3413,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnRecoveryDropdownChanged
         m_Mode: 3
@@ -3632,7 +3753,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditSignupId
         m_Mode: 1
@@ -3650,7 +3771,7 @@ MonoBehaviour:
   m_OnSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnSelectSignupId
         m_Mode: 0
@@ -3674,7 +3795,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputId
         m_Mode: 0
@@ -4657,57 +4778,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938077529}
   m_CullTransparentMesh: 1
---- !u!1 &951073910
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 951073911}
-  - component: {fileID: 951073912}
-  m_Layer: 0
-  m_Name: UImanager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &951073911
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951073910}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &951073912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951073910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0afec5a5486c5145867ce6b1cdb1eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  login_Error: {fileID: 301275903}
-  signup_idError: {fileID: 1428028682}
-  signup_pwError: {fileID: 1814528154}
-  signup_BirthDateError: {fileID: 1221612619}
-  loginMenu: {fileID: 301275900}
-  signupMenu: {fileID: 1221012532}
-  id: 
 --- !u!1 &960343379
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,7 +5221,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnClickBackToLogin
         m_Mode: 1
@@ -6577,7 +6647,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditSignupPw
         m_Mode: 1
@@ -6607,7 +6677,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputPassword
         m_Mode: 0
@@ -6779,7 +6849,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditSignupPwCheck
         m_Mode: 1
@@ -6809,7 +6879,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputCheckPassword
         m_Mode: 0
@@ -6976,7 +7046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebe395873fc8e942b7873c597b89e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UImg: {fileID: 951073912}
+  UImg: {fileID: 468024748}
   id: 
   password: 
   nickname: 
@@ -7084,7 +7154,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditBirthDate
         m_Mode: 1
@@ -7114,7 +7184,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputBirthDate
         m_Mode: 0
@@ -9021,7 +9091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnClickLogin
         m_Mode: 1
@@ -9340,7 +9410,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: InputPassword
         m_Mode: 0
@@ -9531,7 +9601,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 951073912}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnClickSignUp
         m_Mode: 1
@@ -9789,6 +9859,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 468024747}
+  - {fileID: 148077175}
   - {fileID: 1309590868}
-  - {fileID: 951073911}
   - {fileID: 1173368453}
