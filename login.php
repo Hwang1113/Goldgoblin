@@ -2,9 +2,13 @@
 $servername = "localhost:3306";
 $username = "root";
 $password = "";
-$dbname = "db_id";//db ��
+$dbname = "game_db";//db 
 
-$loginUser = $_POST["SigninId"];
+$UserId; = $_POST["Id"];
+$UserPassword = $_POST["Password"];
+$UserNickname = $_POST["Birthday"];
+$UserAR_Q = $_POST["AR_Q"];
+$UserAR_A = $_POST["AR_A"];
 //$loginPass = $_POST["loginPass"];
 
 $conn = new mysqli($servername,
@@ -12,9 +16,10 @@ $conn = new mysqli($servername,
 								 $password,
 								 $dbname);
 
-//$sql = "SELECT * FROM tb_login WHERE id = ' " . $loginUser . " ' ";
-$sql = "INSERT INTO tb_id(id) VALUES('".$loginUser."')";
-$conn->query($sql);
+//$sql = "SELECT * FROM tb_sign WHERE Id = '".$UserId."'";
+$Insertsql = "INSERT INTO tb_sign(Id, Password, Birthday, AR_Q, AR_A)
+		VALUES('".$loginUser."','".$UserPassword."','".$UserNickname."','".$UserAR_Q."','".$UserAR_A."')";
+$conn->query($Insertsql);
 
 // if($result->num_rows > 0 )
 // {

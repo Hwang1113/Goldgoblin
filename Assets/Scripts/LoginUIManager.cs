@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+using TMPro;
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
 using UnityEngine;
 
 public class LoginUIManager : MonoBehaviour
@@ -7,7 +11,10 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
+<<<<<<< HEAD
     public delegate void OnSelectSignupIDInputfiledDelegate();
+=======
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     #endregion
 
     #region 델리게이트 변수
@@ -32,11 +39,14 @@ public class LoginUIManager : MonoBehaviour
     /// </summary>
     public OnClickIDCheckBtnDelegate onClickIDCheckBtn = null;
 
+<<<<<<< HEAD
     /// <summary>
     /// 회원가입 창에서 아이디 입력 필드를 선택할 시 호출되는 델리게이트.
     /// </summary>
     public OnSelectSignupIDInputfiledDelegate onSelectSignupIDInputfiled = null;
 
+=======
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     #endregion
 
     #region 열거형
@@ -45,6 +55,7 @@ public class LoginUIManager : MonoBehaviour
     /// </summary>
     public enum ESignupErrType
     {
+<<<<<<< HEAD
         /// <summary>
         /// 입력값의 형태가 맞지 않음.
         /// </summary>
@@ -52,6 +63,11 @@ public class LoginUIManager : MonoBehaviour
         /// <summary>
         /// 일치 오류
         /// </summary>
+=======
+        // 형태 오류
+        FormatError,
+        // 일치 오류
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
         SameError
     }
     #endregion
@@ -67,18 +83,25 @@ public class LoginUIManager : MonoBehaviour
     #endregion
 
     #region UI 오브젝트 참조 변수
+<<<<<<< HEAD
     [SerializeField, Header("--- UI Reference")]
+=======
+    [SerializeField]
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     private PrintError login_Error = null;
     [SerializeField]
     private PrintError signup_idError = null;
     [SerializeField]
     private PrintError signup_pwError = null;
+<<<<<<< HEAD
     [SerializeField]
     private PrintError signup_BirthDateError = null;
     [SerializeField]
     private GameObject loginMenu = null;
     [SerializeField]
     private GameObject signupMenu = null;
+=======
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     #endregion
 
     #region 변수
@@ -131,11 +154,14 @@ public class LoginUIManager : MonoBehaviour
     {
         onClickIDCheckBtn?.Invoke();
     }
+<<<<<<< HEAD
 
     public void OnSelectSignupId()
     {
         onSelectSignupIDInputfiled?.Invoke();
     }
+=======
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     #endregion
 
     #region 퍼블릭 함수
@@ -173,6 +199,7 @@ public class LoginUIManager : MonoBehaviour
         switch (errType)
         {
             case ESignupErrType.FormatError:
+<<<<<<< HEAD
                 signup_pwError?.PrintErrorMessage("비밀번호는 8~16자이며, 대/소문자 숫자 특문이 하나씩 들어가야 합니다.");
                 break;
             case ESignupErrType.SameError:
@@ -206,5 +233,14 @@ public class LoginUIManager : MonoBehaviour
     {
         signupMenu.SetActive(_active);
     }
+=======
+                signup_idError?.PrintErrorMessage("비밀번호 형식을 맞추세요.");
+                break;
+            case ESignupErrType.SameError:
+                signup_idError?.PrintErrorMessage("비밀번호가 같지 않음.");
+                break;
+        }
+    }
+>>>>>>> ad3785e1f9b06cdaf3ed6103915fada86d41ada0
     #endregion
 }
