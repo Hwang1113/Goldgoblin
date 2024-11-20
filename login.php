@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "game_db";//db 
 
-$UserId; = $_POST["Id"];
+$UserId = $_POST["Id"];
 $UserPassword = $_POST["Password"];
 
 $conn = new mysqli($servername,
@@ -22,14 +22,15 @@ $result = $conn->query($sql);
         {
             if($row["Password"] == $UserPassword)
             {
-                echo "true";
+                echo 1;
                 exit;
             }
         }
-    echo "false";
+        echo 0;
  }
- else{
-    echo "ID not found...";
+ else
+ {
+    echo 0;
  }
 
  $conn->close();

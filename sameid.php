@@ -20,24 +20,23 @@ $sql = "SELECT * FROM tb_sign WHERE Id = '".$UserId."'";
 //$Insertsql = "INSERT INTO tb_sign(Id, Password, Birthday, AR_Q, AR_A)
 		//VALUES('".$loginUser."','".$UserPassword."','".$UserNickname."','".$UserAR_Q."','".$UserAR_A."')";
 $result = $conn->query($sql);
-echo "false";
-//  if($result->num_rows > 0 )
-//  {
-//  	while($row = $result -> fetch_assoc())
-//  	{
-//  		if($row["Id"] == $UserId)
-//  		{
-//  			echo "false";
-//  			exit;
-//  		}
-//  		// else 
-//  		// {
-//  		// 	echo "not Same Id";
-//  		// }
-//  	}
-//  }
-//  else
-//  echo "true";
+ if($result->num_rows > 0 )
+ {
+ 	while($row = $result -> fetch_assoc())
+ 	{
+ 		if($row["Id"] == $UserId)
+ 		{
+ 			echo 0;
+ 			exit;
+ 		}
+ 		// else 
+ 		// {
+ 		// 	echo "not Same Id";
+ 		// }
+ 	}
+ }
+ else
+ echo 1;
 
 $conn->close();
 ?>
