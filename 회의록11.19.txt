@@ -21,3 +21,9 @@ c.사용자 인벤토리DB
 1.Inventory owner
 2.Item Array
 3.EA(개수)(min1 ~ max99)
+
+
+
+
+
+Siginpassword
