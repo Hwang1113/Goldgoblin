@@ -41,7 +41,7 @@ public class GG_GameManager : MonoBehaviour
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     //private const string inventoryUri = "";
 
-    #region Start
+
     private void Start()
     {
         UImg.onClickSubmitBtn = SignUpInfos; // SignUp버튼을 UI 에서 누르면 대리자가 SignUp_Infos 를 실행하게 설정함 
