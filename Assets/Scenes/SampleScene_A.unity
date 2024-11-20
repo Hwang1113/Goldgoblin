@@ -1411,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &301275901
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4704,9 +4704,9 @@ MonoBehaviour:
   login_Error: {fileID: 301275903}
   signup_idError: {fileID: 1428028682}
   signup_pwError: {fileID: 1814528154}
-  signup_BirthDateError: {fileID: 1221612619}
-  loginMenu: {fileID: 301275900}
-  signupMenu: {fileID: 1221012532}
+  signup_BirthDateError: {fileID: 0}
+  loginMenu: {fileID: 0}
+  signupMenu: {fileID: 0}
   id: 
 --- !u!1 &960343379
 GameObject:
@@ -5967,7 +5967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1221012533
 RectTransform:
   m_ObjectHideFlags: 0
