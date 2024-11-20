@@ -19,7 +19,7 @@ public class GG_GameManager : MonoBehaviour
     [SerializeField]
     private string nickname = string.Empty; // 닉네임 문자열
     [SerializeField]
-    private string birthday = string.Empty; // 주민번호앞 문자열 // 990909
+    private int birthday = 0; // 주민번호앞 문자열 // 990909
     [SerializeField]
     private int AR_Q = 0; // 복구질문번호 정수형
     [SerializeField]
@@ -32,14 +32,10 @@ public class GG_GameManager : MonoBehaviour
         private int ea { get; set; } // 아이템 갯수
     }
 
-
-
-
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     //private const string inventoryUri = "";
-
 
     private void Start()
     {
@@ -56,7 +52,8 @@ public class GG_GameManager : MonoBehaviour
     }
     private void AllInfoCheck()
     {
-        if (isDifferentId/*모든 항목체크 여기서 함*/)  //괄호안에 조건 모두 넣기
+        if (isDifferentId && UImg.IsIdFormatCorrect() && UImg.IsPwFormatCorrect() &&
+            UImg.IsPwCheckCorrect() && UImg.IsBirthDateFormatCorrect())  //괄호안에 조건 모두 넣기 차례대로 아이디중복, 아이디 포맷,비밀번호 포맷,비밀번호확인, 생년월일
         {
             isAllInfoChecked = true;
         }
@@ -64,7 +61,7 @@ public class GG_GameManager : MonoBehaviour
         {
             isAllInfoChecked = false;
         }
-    }
+    }// 회원가입 전 모든 항목 확인 
     private void SignUpInfos() //들어온 정보들을 가지고 회원가입 코루틴(SignUpCoroutine)을 시작 
     {
         AllInfoCheck(); //모든 항목체크 시작 isAllInfoChecked를 true 혹은 false로 반환
@@ -72,31 +69,25 @@ public class GG_GameManager : MonoBehaviour
         if (!isAllInfoChecked) 
         {
             Debug.Log("확인되지 않는 항목이 있습니다");
+
             return;
         }
 
-        id = UImg.Id;//UI에 적힌 Id를 id에 복사
-        password = UImg.Password; //UI에 적힌 password 복사
-        Debug.Log("id:" + id);
-        Debug.Log("password:" + password);
+
 
         if (isDifferentId == true)
         {
-            StartCoroutine(SignUpCoroutine(id,password));
+            StartCoroutine(SignUpCoroutine());
         }
         else if (isDifferentId == false)
         {
             Debug.Log("Id 중복확인 후 회원가입 ");
         }
     }
-
-
     private void SameIdCheck()
     {
         StartCoroutine(SameIdCheckCoroutine(id));            // 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
     }
-
-
     private void GoSignUp() //로그인 창을 끈다, 회원가입창을 킨다.
     {
         UImg.SetLoginMenuActivation(false);
@@ -107,14 +98,11 @@ public class GG_GameManager : MonoBehaviour
         UImg.SetSignupMenuActivation(false);
         UImg.SetLoginMenuActivation(true);
     }
-
     private void IdCheckFalse() //isDifferentId = false; 로 만듬
     {
         isDifferentId = false;
         Debug.Log("아이디 입력 후 중복체크를 누르시오");
     }
-
-
     //////////////////////////////////////////////////
     //밑으로는 DB데이터 전달 관련 코루틴만
     //////////////////////////////////////////////////
@@ -137,18 +125,40 @@ public class GG_GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("로그인성공");
-                string loginsucess = www.downloadHandler.text;
-                Debug.Log(loginsucess);
+                string loginResult = www.downloadHandler.text;
+                Debug.Log(loginResult);
+                if (loginResult == "0")//로그인시도, 정보대조후 알맞는게 없다
+                {
+                    UImg.PrintLoginError(); //에러로그를 띄운다.
+                }
+                if (loginResult == "1")//로그인시도, 정보대조후 알맞는게 있다
+                {  
+                    Debug.Log("로그인 가능"); //InventoryUri 만들어서 호출해야할듯
+                }
+
             }
         }
     }
-    private IEnumerator SignUpCoroutine(string _id, string _password) //가져온 정보들을 서버에 전달, 회원가입 코루틴 
+    private IEnumerator SignUpCoroutine() //가져온 정보들을 서버에 전달, 회원가입 코루틴 
     {
+        id = UImg.Id;//UI에 적힌 Id를 id에 복사
+        password = UImg.Password; //UI에 적힌 password 복사
+        nickname = UImg.Nickname;
+        birthday = UImg.BirthDate;
+        AR_Q = UImg.RecoveryInd;
+        AR_A = UImg.RecoveryAnswer;
+
+
+        Debug.Log("id:" + id);
+        Debug.Log("password:" + password);
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
 
-        form.AddField("Id", _id);
-        form.AddField("Password", _password);
+        form.AddField("Id", id);
+        form.AddField("Password", password);
+        form.AddField("Nickname", nickname);
+        form.AddField("Birthday", birthday);
+        form.AddField("AR_Q", AR_Q);
+        form.AddField("AR_A", AR_A);
         //웹서버는 비동기 방식
         using (UnityWebRequest www = UnityWebRequest.Post(signupUri, form)) //post는 보안 //get은 속도
         {
@@ -177,7 +187,6 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-
     private IEnumerator SameIdCheckCoroutine(string _id) //아이디 중복방지 코루틴
     {
 
