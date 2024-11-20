@@ -6879,7 +6879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1221012533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8105,7 +8105,7 @@ MonoBehaviour:
   id: 
   password: 
   nickname: 
-  birthday: 
+  birthday: 0
   AR_Q: 0
   AR_A: 
 --- !u!1 &1335557009
@@ -10034,7 +10034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1684204224
 RectTransform:
   m_ObjectHideFlags: 0
