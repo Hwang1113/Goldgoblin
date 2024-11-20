@@ -39,13 +39,11 @@ public class GG_GameManager : MonoBehaviour
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
-    private const string inventoryUri = "";
+    //private const string inventoryUri = "";
 
-
+    #region Start
     private void Start()
     {
-        //StartCoroutine(LoginCoroutine(id)); //아이디 비밀번호 받아서 로그인 코루틴 시작
-
         UImg.onClickSubmitBtn = SignUpInfos; // SignUp버튼을 UI 에서 누르면 대리자가 SignUp_Infos 를 실행하게 설정함 
         UImg.onClickIDCheckBtn = SameIdCheck;  //중복방지 버튼을  UI에서 누르면 대리자가 중복방지를 실행함
         UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
