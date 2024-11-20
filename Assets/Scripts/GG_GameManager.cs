@@ -37,15 +37,10 @@ public class GG_GameManager : MonoBehaviour
 
 
     private const string loginUri = "http://127.0.0.1/login.php";
-<<<<<<< HEAD
     private const string signUri = "http://127.0.0.1/signin.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     private const string inventoryUri = "";
-=======
-    private const string signinUri = "http://127.0.0.1/signin.php";
-    private const string sameidUri = "http://127.0.0.1/sameid.php";
 
->>>>>>> NewH
 
     private void Start()
     {
@@ -56,6 +51,7 @@ public class GG_GameManager : MonoBehaviour
         UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
         UImg.onClickLoginBtn =Login; //로그인 버튼을 누르면 Login() 실행
+        UImg.onClickBackToLoginBtn = GoLogin; //backtologin 버튼을 누르면 
     }
     private void Login()
     {
@@ -117,6 +113,11 @@ public class GG_GameManager : MonoBehaviour
     {
         UImg.SetLoginMenuActivation(false);
         UImg.SetSignupMenuActivation(true);
+    }    
+    private void GoLogin() // 회원가입창을 끈다, 로그인창을 킨다.
+    {
+        UImg.SetSignupMenuActivation(false);
+        UImg.SetLoginMenuActivation(true);
     }
     private void IdCheckFalse() //isDifferentId = false; 로 만듬
     {

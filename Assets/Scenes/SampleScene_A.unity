@@ -4693,8 +4693,8 @@ MonoBehaviour:
   signup_idError: {fileID: 1428028682}
   signup_pwError: {fileID: 1814528154}
   signup_BirthDateError: {fileID: 0}
-  loginMenu: {fileID: 0}
-  signupMenu: {fileID: 0}
+  loginMenu: {fileID: 301275900}
+  signupMenu: {fileID: 1221012532}
   id: 
 --- !u!1 &960343379
 GameObject:
@@ -5141,7 +5141,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 951073912}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
-        m_MethodName: OnClickSubmit
+        m_MethodName: OnClickBackToLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
