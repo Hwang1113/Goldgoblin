@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class LoginUIManager : MonoBehaviour
@@ -81,12 +82,13 @@ public class LoginUIManager : MonoBehaviour
     private GameObject signupMenu = null;
     #endregion
 
-    #region 변수
+    #region 내부 변수
     [SerializeField]
     private string id = null;
     private string password = null;
     private string checkPassword = null;
     private string nickname = null;
+    private string birthDate = null;
     private string recoveryAnswer = null;
     private int recoveryInd = 0;
     #endregion
@@ -110,6 +112,11 @@ public class LoginUIManager : MonoBehaviour
     public void OnRecoveryDropdownChanged(int _ind)
     {
         recoveryInd = _ind;
+    }
+
+    public void InputBirthDate(string _birthDate)
+    {
+        birthDate = _birthDate;
     }
 
     public void OnClickSubmit()
@@ -206,5 +213,95 @@ public class LoginUIManager : MonoBehaviour
     {
         signupMenu.SetActive(_active);
     }
+
+    /// <summary>
+    /// 아이디의 형태가 올바른지 확인함.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsIdFormatCorrect()
+    {
+        // 아이디는 공백이면 안되고, 8 ~ 16 자 사이여야 한다.
+        if (string.IsNullOrEmpty(id) ||
+            id.Length < 8 || id.Length > 16)
+            return false;
+
+        for(int i = 0; i < id.Length; ++i)
+        {
+            // 알파벳, 숫자, -, _ 만 허용된다.
+            if (!char.IsLetterOrDigit(id[i]) || id[i] != '-' || id[i] != '_')
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 패스워드의 형태가 올바른지 확인함.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsPwFormatCorrect()
+    {
+        // 비밀번호는 공백이면 안되고, 8 ~ 16 자 사이여야 한다.
+        if (string.IsNullOrEmpty(password) ||
+            password.Length < 8 || password.Length > 16)
+            return false;
+
+        // arr_pwFormat 0 : 소문자 1 : 대문자 2 : 숫자 3 : 특문
+        bool[] arr_pwFormat = new bool[4];
+
+        // 허용하는 특문들.
+        string allowedSpecialChars = "[!@#$%^&*()_+=\\[{\\]};:<>|./?,-]";
+
+        for (int i = 0; i < password.Length; ++i)
+        {
+            if (char.IsLower(password[i])) arr_pwFormat[0] = true;
+            else if (char.IsUpper(password[i])) arr_pwFormat[1] = true;
+            else if (char.IsDigit(password[i])) arr_pwFormat[2] = true;
+            else if (allowedSpecialChars.Contains(password[i])) arr_pwFormat[3] = true;
+        }
+
+        if (arr_pwFormat.Contains(false)) return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// 회원가입 때 패스워드 확인창과의 일치 여부를 확인함.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsPwCheckCorrect()
+    {
+        if (password != checkPassword) return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// 회원가입 때 생년월일의 형태가 올바른지 확인함.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsBirthDateFormatCorrect()
+    {
+        // 생년월일은 6자리 양의 정수여야 한다.
+        if (string.IsNullOrEmpty(birthDate) || birthDate.Contains('-') || birthDate.Length != 6)
+            return false;
+
+        int month = int.Parse(birthDate.Substring(2, 2));
+        int day = int.Parse(birthDate.Substring(4, 2));
+
+        // 월은 1~12 월 사이여야 한다.
+        if(month < 1 || month > 12)
+            return false;
+
+        // 일은 1~31 일 사이여야 한다.
+        if (day < 1 || day > 31)
+            return false;
+
+        return true;
+    }
+
+    #endregion
+
+    #region 프라이빗 함수
     #endregion
 }

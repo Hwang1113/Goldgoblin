@@ -4691,7 +4691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   login_Error: {fileID: 301275903}
   signup_idError: {fileID: 1428028682}
-  signup_pwError: {fileID: 1814528154}
+  signup_pwError: {fileID: 0}
   signup_BirthDateError: {fileID: 1221612619}
   loginMenu: {fileID: 301275900}
   signupMenu: {fileID: 1221012532}
@@ -6281,8 +6281,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -6471,8 +6471,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -6673,6 +6673,10 @@ MonoBehaviour:
   UImg: {fileID: 951073912}
   id: 
   password: 
+  nickname: 
+  birthday: 
+  AR_Q: 0
+  AR_A: 
 --- !u!1 &1335557009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6760,14 +6764,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -6791,7 +6795,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 951073912}
+        m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
+        m_MethodName: InputBirthDate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8130,7 +8146,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1814528153}
-  - component: {fileID: 1814528154}
   m_Layer: 5
   m_Name: PWHolder
   m_TagString: Untagged
@@ -8162,19 +8177,6 @@ RectTransform:
   m_AnchoredPosition: {x: -33.399963, y: -118.399994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1814528154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814528152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce99a9e834021b746a9178e6e92fdb3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text_Error: {fileID: 1520436817}
 --- !u!1 &1817873402
 GameObject:
   m_ObjectHideFlags: 0
@@ -8974,8 +8976,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
