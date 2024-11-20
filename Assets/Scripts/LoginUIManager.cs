@@ -8,6 +8,7 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
+    public delegate void OnClickBackToLoginBtnDelegate();
     public delegate void OnSelectSignupIDInputfiledDelegate();
     #endregion
 
@@ -37,6 +38,11 @@ public class LoginUIManager : MonoBehaviour
     /// 회원가입 창에서 아이디 입력 필드를 선택할 시 호출되는 델리게이트.
     /// </summary>
     public OnSelectSignupIDInputfiledDelegate onSelectSignupIDInputfiled = null;
+
+    /// <summary>
+    /// 회원가입 창에서 다시 로그인 창으로 돌아가는 버튼 누를 시 호출되는 델리게이트.
+    /// </summary>
+    public OnClickBackToLoginBtnDelegate onClickBackToLoginBtn = null;
 
     #endregion
 
@@ -137,6 +143,13 @@ public class LoginUIManager : MonoBehaviour
     public void OnClickIdCheck()
     {
         onClickIDCheckBtn?.Invoke();
+    }
+
+    public void OnClickBackToLogin()
+    {
+        onClickBackToLoginBtn?.Invoke();
+
+
     }
 
     public void OnSelectSignupId()
@@ -303,5 +316,23 @@ public class LoginUIManager : MonoBehaviour
     #endregion
 
     #region 프라이빗 함수
+    private void InitSignupUI()
+    {
+        id = string.Empty;
+        password = string.Empty;
+        checkPassword = string.Empty;
+        nickname = string.Empty;
+        birthDate = string.Empty;
+        recoveryAnswer = string.Empty;
+        recoveryInd = 0;
+
+
+    }
+
+    private void InitLoginUI()
+    {
+        id = string.Empty;
+        password = string.Empty;
+    }
     #endregion
 }
