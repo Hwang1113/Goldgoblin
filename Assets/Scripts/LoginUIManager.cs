@@ -7,6 +7,7 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
+    public delegate void OnSelectSignupIDInputfiledDelegate();
     #endregion
 
     #region 델리게이트 변수
@@ -30,6 +31,11 @@ public class LoginUIManager : MonoBehaviour
     /// 회원가입 창에서 아이디 확인 버튼을 눌렀을 시 호출되는 델리게이트.
     /// </summary>
     public OnClickIDCheckBtnDelegate onClickIDCheckBtn = null;
+
+    /// <summary>
+    /// 회원가입 창에서 아이디 입력 필드를 선택할 시 호출되는 델리게이트.
+    /// </summary>
+    public OnSelectSignupIDInputfiledDelegate onSelectSignupIDInputfiled = null;
 
     #endregion
 
@@ -124,6 +130,11 @@ public class LoginUIManager : MonoBehaviour
     public void OnClickIdCheck()
     {
         onClickIDCheckBtn?.Invoke();
+    }
+
+    public void OnSelectSignupId()
+    {
+        onSelectSignupIDInputfiled?.Invoke();
     }
     #endregion
 
