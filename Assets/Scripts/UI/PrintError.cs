@@ -8,6 +8,8 @@ public class PrintError : MonoBehaviour
 
     public void PrintErrorMessage(string _error)
     {
+        gameObject.SetActive(true);
+
         text_Error.text = _error;
     }
 }

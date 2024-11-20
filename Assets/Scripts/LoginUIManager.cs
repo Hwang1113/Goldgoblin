@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class LoginUIManager : MonoBehaviour
@@ -8,6 +7,7 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
+    public delegate void OnSelectSignupIDInputfiledDelegate();
     #endregion
 
     #region 델리게이트 변수
@@ -32,6 +32,11 @@ public class LoginUIManager : MonoBehaviour
     /// </summary>
     public OnClickIDCheckBtnDelegate onClickIDCheckBtn = null;
 
+    /// <summary>
+    /// 회원가입 창에서 아이디 입력 필드를 선택할 시 호출되는 델리게이트.
+    /// </summary>
+    public OnSelectSignupIDInputfiledDelegate onSelectSignupIDInputfiled = null;
+
     #endregion
 
     #region 열거형
@@ -40,9 +45,13 @@ public class LoginUIManager : MonoBehaviour
     /// </summary>
     public enum ESignupErrType
     {
-        // 형태 오류
+        /// <summary>
+        /// 입력값의 형태가 맞지 않음.
+        /// </summary>
         FormatError,
-        // 일치 오류
+        /// <summary>
+        /// 일치 오류
+        /// </summary>
         SameError
     }
     #endregion
@@ -58,12 +67,18 @@ public class LoginUIManager : MonoBehaviour
     #endregion
 
     #region UI 오브젝트 참조 변수
-    [SerializeField]
+    [SerializeField, Header("--- UI Reference")]
     private PrintError login_Error = null;
     [SerializeField]
     private PrintError signup_idError = null;
     [SerializeField]
     private PrintError signup_pwError = null;
+    [SerializeField]
+    private PrintError signup_BirthDateError = null;
+    [SerializeField]
+    private GameObject loginMenu = null;
+    [SerializeField]
+    private GameObject signupMenu = null;
     #endregion
 
     #region 변수
@@ -116,6 +131,11 @@ public class LoginUIManager : MonoBehaviour
     {
         onClickIDCheckBtn?.Invoke();
     }
+
+    public void OnSelectSignupId()
+    {
+        onSelectSignupIDInputfiled?.Invoke();
+    }
     #endregion
 
     #region 퍼블릭 함수
@@ -153,12 +173,38 @@ public class LoginUIManager : MonoBehaviour
         switch (errType)
         {
             case ESignupErrType.FormatError:
-                signup_idError?.PrintErrorMessage("비밀번호 형식을 맞추세요.");
+                signup_pwError?.PrintErrorMessage("비밀번호는 8~16자이며, 대/소문자 숫자 특문이 하나씩 들어가야 합니다.");
                 break;
             case ESignupErrType.SameError:
-                signup_idError?.PrintErrorMessage("비밀번호가 같지 않음.");
+                signup_pwError?.PrintErrorMessage("비밀번호가 같지 않음.");
                 break;
         }
+    }
+
+    /// <summary>
+    /// 회원가입 때 생년월일 오류가 생겼을 경우 에러 메시지 출력.
+    /// </summary>
+    public void PrintBirthDateError()
+    {
+        signup_BirthDateError.PrintErrorMessage("YYMMDD 형식으로 입력하여야 합니다.");
+    }
+
+    /// <summary>
+    /// 로그인 메뉴를 활성화, 비활성화시킨다.
+    /// </summary>
+    /// <param name="_active">활성화 여부</param>
+    public void SetLoginMenuActivation(bool _active)
+    {
+        loginMenu.SetActive(_active);
+    }
+
+    /// <summary>
+    /// 회원가입 메뉴를 활성화, 비활성화시킨다.
+    /// </summary>
+    /// <param name="_active">활성화 여부</param>
+    public void SetSignupMenuActivation(bool _active)
+    {
+        signupMenu.SetActive(_active);
     }
     #endregion
 }
