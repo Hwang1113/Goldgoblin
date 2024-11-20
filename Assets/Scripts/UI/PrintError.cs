@@ -12,4 +12,9 @@ public class PrintError : MonoBehaviour
 
         text_Error.text = _error;
     }
+
+    public void HideErrorMessage()
+    {
+        gameObject.SetActive(false);
+    }
 }
