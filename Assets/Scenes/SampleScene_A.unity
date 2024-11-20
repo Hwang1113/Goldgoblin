@@ -310,8 +310,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 57.800102, y: -30.6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 403.6, y: 4.500004}
+  m_SizeDelta: {x: 350, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &68686018
 MonoBehaviour:
@@ -360,14 +360,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1411,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &301275901
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4158,8 +4158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58.2, y: -27.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 403.9999, y: 7.4000034}
+  m_SizeDelta: {x: 350, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841001467
 MonoBehaviour:
@@ -4208,14 +4208,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4704,7 +4704,7 @@ MonoBehaviour:
   login_Error: {fileID: 301275903}
   signup_idError: {fileID: 1428028682}
   signup_pwError: {fileID: 1814528154}
-  signup_BirthDateError: {fileID: 0}
+  signup_BirthDateError: {fileID: 1221612619}
   loginMenu: {fileID: 301275900}
   signupMenu: {fileID: 1221012532}
   id: 
@@ -5967,7 +5967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1221012533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6046,7 +6046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce99a9e834021b746a9178e6e92fdb3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_Error: {fileID: 0}
+  text_Error: {fileID: 68686018}
 --- !u!1 &1234293302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,7 +6580,7 @@ MonoBehaviour:
       - m_Target: {fileID: 951073912}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditSignupPw
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6782,7 +6782,7 @@ MonoBehaviour:
       - m_Target: {fileID: 951073912}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditSignupPwCheck
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6811,7 +6811,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 951073912}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
-        m_MethodName: InputPassword
+        m_MethodName: InputCheckPassword
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7087,7 +7087,7 @@ MonoBehaviour:
       - m_Target: {fileID: 951073912}
         m_TargetAssemblyTypeName: LoginUIManager, Assembly-CSharp
         m_MethodName: OnEndEditBirthDate
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7701,8 +7701,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 58.20002, y: -24.1}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 423, y: -32}
+  m_SizeDelta: {x: 392.39, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520436817
 MonoBehaviour:
@@ -7751,14 +7751,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

@@ -115,6 +115,11 @@ public class LoginUIManager : MonoBehaviour
         recoveryAnswer = _recoveryAnswer;
     }
 
+    public void InputCheckPassword(string _pw)
+    {
+        checkPassword = _pw;
+    }
+
     public void OnRecoveryDropdownChanged(int _ind)
     {
         recoveryInd = _ind;
@@ -208,10 +213,10 @@ public class LoginUIManager : MonoBehaviour
         switch(errType)
         {
             case ESignupErrType.FormatError:
-                signup_idError?.PrintErrorMessage("아이디 형식 맞추삼");
+                signup_idError?.PrintErrorMessage("아이디는 8~16자, 영어 숫자 - _ 만 허용됩니다.");
                 break;
             case ESignupErrType.SameError:
-                signup_idError?.PrintErrorMessage("같은 아이디가 있삼");
+                signup_idError?.PrintErrorMessage("중복되는 아이디가 있습니다.");
                 break;
         }
     }
@@ -273,7 +278,9 @@ public class LoginUIManager : MonoBehaviour
         for(int i = 0; i < id.Length; ++i)
         {
             // 알파벳, 숫자, -, _ 만 허용된다.
-            if (!char.IsLetterOrDigit(id[i]) || id[i] != '-' || id[i] != '_')
+            if (char.IsLetterOrDigit(id[i]) || id[i] == '-' || id[i] == '_')
+                continue;
+            else
                 return false;
         }
 
