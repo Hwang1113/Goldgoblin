@@ -10,14 +10,20 @@ a.계정(table)
 
 
 
-b.아이템
+b.아이템 class
 1.itemNumber
 2.Name
 3.description
 4.Rarity
-5.Slot
+{1.,2.,3.,4.}기본 폼
+
+{itemNumber : 1, Name : 포션, description : 피회복, Rarity : 흔함}
+
+{2,방패,막습니다,흔하지 않음}
+
+{4,2.검,찌릅니다,귀함}
+
 
 c.사용자 인벤토리DB
 1.Inventory owner
 2.Item Array
-3.EA(개수)(min1 ~ max99)
