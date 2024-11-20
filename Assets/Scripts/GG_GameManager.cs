@@ -24,8 +24,9 @@ public class GG_GameManager : MonoBehaviour
     private string AR_A = string.Empty; // 복구답변 문자열
 
     private const string loginUri = "http://127.0.0.1/login.php";
-    private const string SameIdUri = "http://127.0.0.1/SameId.php";
-
+    private const string signUri = "http://127.0.0.1/signin.php";
+    private const string sameidUri = "http://127.0.0.1/sameid.php";
+    private const string inventoryUri = "";
 
     private void Start()
     {
@@ -95,7 +96,7 @@ public class GG_GameManager : MonoBehaviour
     {
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
         form.AddField("Id", _id); //서버에 id를 넘겨줌
-        using (UnityWebRequest www = UnityWebRequest.Post(SameIdUri, form)) 
+        using (UnityWebRequest www = UnityWebRequest.Post(sameidUri, form)) 
         {
             yield return www.SendWebRequest();
 
