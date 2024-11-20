@@ -66,9 +66,8 @@ public class LoginUIManager : MonoBehaviour
     #region 프로퍼티들
     public string Id { get{ return id; } }
     public string Password { get{ return password; } }
-
     public string Nickname { get{ return nickname; } }
-
+    public int BirthDate { get { return int.Parse(birthDate); } }
     public string RecoveryAnswer { get{ return recoveryAnswer; } }
     public int RecoveryInd { get{ return recoveryInd; } }
     #endregion
