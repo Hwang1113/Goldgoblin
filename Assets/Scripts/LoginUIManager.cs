@@ -148,13 +148,45 @@ public class LoginUIManager : MonoBehaviour
     public void OnClickBackToLogin()
     {
         onClickBackToLoginBtn?.Invoke();
-
-
     }
 
     public void OnSelectSignupId()
     {
         onSelectSignupIDInputfiled?.Invoke();
+    }
+
+    public void OnEndEditSignupId()
+    {
+        if (!IsIdFormatCorrect())
+            PrintSignupIdError(ESignupErrType.FormatError);
+        else
+            signup_idError.HideErrorMessage();
+    }
+    public void OnEndEditSignupPw()
+    {
+        if (!IsPwFormatCorrect())
+            PrintSignupPwError(ESignupErrType.FormatError);
+        else
+            signup_pwError.HideErrorMessage();
+    }
+    public void OnEndEditSignupPwCheck()
+    {
+        // 패스워드 포맷이 올바르지 않으면 포맷부터 맞추도록 해야 함.
+        // 패스워드 일치 체크는 후순위.
+        if (!IsPwFormatCorrect())
+            return;
+
+        if (!IsPwCheckCorrect())
+            PrintSignupPwError(ESignupErrType.SameError);
+        else
+            signup_pwError.HideErrorMessage();
+    }
+    public void OnEndEditBirthDate()
+    {
+        if (!IsBirthDateFormatCorrect())
+            PrintBirthDateError();
+        else
+            signup_BirthDateError.HideErrorMessage();
     }
     #endregion
 
@@ -325,8 +357,6 @@ public class LoginUIManager : MonoBehaviour
         birthDate = string.Empty;
         recoveryAnswer = string.Empty;
         recoveryInd = 0;
-
-
     }
 
     private void InitLoginUI()
