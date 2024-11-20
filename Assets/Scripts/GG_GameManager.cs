@@ -27,14 +27,18 @@ public class GG_GameManager : MonoBehaviour
 
 
     //player item db 받아온걸 저장할 데이터형들
-    private string owner = string.Empty; //아이템 주인
-    private string[] item = null; //아이템(이름) 배열
-    private string[] ea = null; // 아이템 갯수
+    private class InventoryitemDB
+    {
+        private string itemNum { get; set; } //아이템넘버 배열
+        private int ea { get; set; } // 아이템 갯수
+    }
 
+    List<InventoryitemDB> MyInventory = null;
 
 
     private const string loginUri = "http://127.0.0.1/login.php";
-    private const string SameIdUri = "http://127.0.0.1/SameId.php";
+    private const string signinUri = "http://127.0.0.1/signin.php";
+    private const string sameidUri = "http://127.0.0.1/sameid.php";
 
 
     private void Start()
@@ -46,6 +50,11 @@ public class GG_GameManager : MonoBehaviour
         UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
         //UImg.onClickLoginBtn = //로그인 버튼을 누르면
+    }
+    private void Login()
+    {
+        StartCoroutine(SignInCoroutine(id));
+
     }
     private void AllInfoCheck()
     {
@@ -153,10 +162,18 @@ public class GG_GameManager : MonoBehaviour
             else
             {
                 //Debug.Log(www.downloadHandler.text);
-                //로그인 성공 했으니까 서버에서 뭘 대답하냐
-                string data = www.downloadHandler.text; //일단 json 형식으로 작성된 "문자열" 아이템 정보를 받아와서
-                // 역직렬화를 통해 게임매니저가 아이템DB 받아옴, 작성해야함
-                //
+
+
+                //로그인 성공 하면 서버에서 뭘 대답하냐
+                string data = www.downloadHandler.text; 
+                if (data == "false")                //로그인 실패시 php에선 문자열 "false"로 반환 하기로 함.
+                { 
+                }
+                else
+                {
+                    MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
+                    //json 형식으로 작성된 "문자열" 아이템 정보를 받아와서 역직렬화를 통해 게임매니저가 아이템DB 받아옴, 작성해야함
+                }
             }
         }
     }
@@ -165,7 +182,7 @@ public class GG_GameManager : MonoBehaviour
     {
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
         form.AddField("Id", _id); //서버에 id를 넘겨줌
-        using (UnityWebRequest www = UnityWebRequest.Post(SameIdUri, form)) 
+        using (UnityWebRequest www = UnityWebRequest.Post(sameidUri, form)) 
         {
             yield return www.SendWebRequest();
 
