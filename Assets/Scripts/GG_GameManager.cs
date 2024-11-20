@@ -49,12 +49,11 @@ public class GG_GameManager : MonoBehaviour
         UImg.onClickIDCheckBtn = SameIdCheck;  //중복방지 버튼을  UI에서 누르면 대리자가 중복방지를 실행함
         UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
-        //UImg.onClickLoginBtn = //로그인 버튼을 누르면
+        UImg.onClickLoginBtn =Login; //로그인 버튼을 누르면 Login() 실행
     }
     private void Login()
     {
-        StartCoroutine(SignInCoroutine(id));
-
+        StartCoroutine(SignInCoroutine(id,password));
     }
     private void AllInfoCheck()
     {
@@ -144,11 +143,11 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator SignInCoroutine(string _id/*, string _password*/) //가져온 정보들을 서버에 전달, 로그인 코루틴 
+    private IEnumerator SignInCoroutine(string _id, string _password) //가져온 정보들을 서버에 전달, 로그인 코루틴 
     {
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
         form.AddField("Id", _id);
-        //form.AddField("Password", _password);
+        form.AddField("Password", _password);
         //웹서버는 비동기 방식
         using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post는 보안 //get은 속도
         {
@@ -167,7 +166,8 @@ public class GG_GameManager : MonoBehaviour
                 //로그인 성공 하면 서버에서 뭘 대답하냐
                 string data = www.downloadHandler.text; 
                 if (data == "false")                //로그인 실패시 php에선 문자열 "false"로 반환 하기로 함.
-                { 
+                {
+                    UImg.PrintLoginError();
                 }
                 else
                 {
