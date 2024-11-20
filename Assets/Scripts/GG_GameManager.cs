@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 
 public class GG_GameManager : MonoBehaviour
 {
-    private bool isDifferentId = false;
+    private bool isDifferentId = false; //아이디 중복인지 아닌지를 저장하는 bool 값
+    private bool isAllInfoChecked = false; //모든 항목이 true인지 아닌지 저장하는 bool 값
 
     [SerializeField]
     private LoginUIManager UImg = null;
@@ -23,28 +24,72 @@ public class GG_GameManager : MonoBehaviour
     [SerializeField]
     private string AR_A = string.Empty; // 복구답변 문자열
 
+
+
+    //player item db 받아온걸 저장할 데이터형들
+    private class InventoryitemDB
+    {
+        private string itemNum { get; set; } //아이템넘버 배열
+        private int ea { get; set; } // 아이템 갯수
+    }
+
+    List<InventoryitemDB> MyInventory = null;
+
+
     private const string loginUri = "http://127.0.0.1/login.php";
+<<<<<<< HEAD
     private const string signUri = "http://127.0.0.1/signin.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     private const string inventoryUri = "";
+=======
+    private const string signinUri = "http://127.0.0.1/signin.php";
+    private const string sameidUri = "http://127.0.0.1/sameid.php";
+
+>>>>>>> NewH
 
     private void Start()
     {
         //StartCoroutine(LoginCoroutine(id)); //아이디 비밀번호 받아서 로그인 코루틴 시작
 
-        UImg.onClickSubmitBtn = Signin_Infos; // Signin버튼을 UI 에서 누르면 대리자가 Signin_Infos 를 실행하게 설정함 
+        UImg.onClickSubmitBtn = SignUpnfos; // SignUp버튼을 UI 에서 누르면 대리자가 SignUp_Infos 를 실행하게 설정함 
         UImg.onClickIDCheckBtn = SameIdCheck;  //중복방지 버튼을  UI에서 누르면 대리자가 중복방지를 실행함
+        UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
+        UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
+        UImg.onClickLoginBtn =Login; //로그인 버튼을 누르면 Login() 실행
     }
-
-    private void Signin_Infos() //들어온 정보들을 가지고 코루틴(SigninCoroutine)을 시작 
+    private void Login()
     {
-        id = UImg.Id;
+        StartCoroutine(SignInCoroutine(id,password));
+    }
+    private void AllInfoCheck()
+    {
+        if (isDifferentId/*모든 항목체크 여기서 함*/)  //괄호안에 조건 모두 넣기
+        {
+            isAllInfoChecked = true;
+        }
+        else 
+        {
+            isAllInfoChecked = false;
+        }
+    }
+    private void SignUpnfos() //들어온 정보들을 가지고 회원가입 코루틴(SignUpCoroutine)을 시작 
+    {
+        AllInfoCheck(); //모든 항목체크 시작 isAllInfoChecked를 true 혹은 false로 반환
+
+        if (!isAllInfoChecked) 
+        {
+            Debug.Log("확인되지 않는 항목이 있습니다");
+            return;
+        }
+
+        id = UImg.Id;//UI에 적힌 Id를 id에 복사
         Debug.Log("id:" + id);
+
         if (isDifferentId == true)
         {
-            StartCoroutine(SigninCoroutine(id/*,password*/));
+            StartCoroutine(SignUpCoroutine(id/*,password*/));
         }
-        else
+        else if (isDifferentId == false)
         {
             Debug.Log("Id 중복확인 후 회원가입 ");
         }
@@ -52,25 +97,38 @@ public class GG_GameManager : MonoBehaviour
     private void SameIdCheck()
     {
         if (isDifferentId == true)
-            //나중에 아이디에 적힌값이 바꼈을때 다시 
-            //onValuechanged 등 통해 isDifferentId를 false로 바꿀것 안그러면 중복방지체크후 아이디를 바꾼 후 회원가입할 수 있음 11.20
+        //나중에 아이디에 적힌값이 바꼈을때 다시 
+        //onValuechanged 등 통해 isDifferentId를 false로 바꿀것 안그러면 중복방지체크후 아이디를 바꾼 후 회원가입할 수 있음 11.20
         {
             Debug.Log("아이디 생성 가능(중복된 게 없음)");
             return;
         }
         if (isDifferentId == false)
         {
-            id = UImg.Id; 
-            StartCoroutine(SameIdCheckCoroutine(id));// 코루틴 안에서 중복된지 확인해서 안에서 isDifferentId를 false나 true로 바꿔줌
+            id = UImg.Id;
+            StartCoroutine(SameIdCheckCoroutine(id));// 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
             if (isDifferentId == true)
                 Debug.Log("아이디 생성 가능(중복된 게 없음)");
-            else
+            else if(isDifferentId == false)
                 Debug.Log("아이디 생성 불가능(중복)");
         }
     }
+    private void GoSignUp() //로그인 창을 끈다, 회원가입창을 킨다.
+    {
+        UImg.SetLoginMenuActivation(false);
+        UImg.SetSignupMenuActivation(true);
+    }
+    private void IdCheckFalse() //isDifferentId = false; 로 만듬
+    {
+        isDifferentId = false;
+        Debug.Log("아이디 입력 후 중복체크를 누르시오");
+    }
 
 
-    private IEnumerator SigninCoroutine(string _id/*, string _password*/) //가져온 정보들을 서버에 전달 추가, 회원가입 코루틴 
+    //////////////////////////////////////////////////
+    //밑으로는 DB데이터 전달 관련 코루틴만
+    //////////////////////////////////////////////////
+    private IEnumerator SignUpCoroutine(string _id/*, string _password*/) //가져온 정보들을 서버에 전달 , 회원가입 코루틴 
     {
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
         form.AddField("Id", _id);
@@ -88,6 +146,40 @@ public class GG_GameManager : MonoBehaviour
             else
             {
                 //Debug.Log(www.downloadHandler.text);
+            }
+        }
+    }
+    private IEnumerator SignInCoroutine(string _id, string _password) //가져온 정보들을 서버에 전달, 로그인 코루틴 
+    {
+        WWWForm form = new WWWForm(); //서버 전달 형태를 정함
+        form.AddField("Id", _id);
+        form.AddField("Password", _password);
+        //웹서버는 비동기 방식
+        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post는 보안 //get은 속도
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError ||
+                www.result == UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);
+
+
+                //로그인 성공 하면 서버에서 뭘 대답하냐
+                string data = www.downloadHandler.text; 
+                if (data == "false")                //로그인 실패시 php에선 문자열 "false"로 반환 하기로 함.
+                {
+                    UImg.PrintLoginError();
+                }
+                else
+                {
+                    MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
+                    //json 형식으로 작성된 "문자열" 아이템 정보를 받아와서 역직렬화를 통해 게임매니저가 아이템DB 받아옴, 작성해야함
+                }
             }
         }
     }
@@ -113,9 +205,13 @@ public class GG_GameManager : MonoBehaviour
                 {
                     isDifferentId = false;
                 }
-                else
+                else if(CheckId == "true") //같은게 없으면 true로 답변 해주기로함
                 {
                     isDifferentId = true;
+                }
+                else 
+                {
+                    Debug.Log("서버가 이상해요");
                 }
             }
         }
