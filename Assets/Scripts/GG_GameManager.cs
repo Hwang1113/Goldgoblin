@@ -172,11 +172,11 @@ public class GG_GameManager : MonoBehaviour
 
                 //로그인 성공 하면 서버에서 뭘 대답하냐
                 string data = www.downloadHandler.text; 
-                if (data == "false")                //로그인 실패시 php에선 문자열 "false"로 반환 하기로 함.
+                if (data == "0")                //로그인 실패시 php에선 문자열 "0"로 반환 하기로 함.
                 {
                     UImg.PrintLoginError();
                 }
-                else if(data == "true")
+                else if(data == "1")
                 {
                     Debug.Log("로그인 성공");
                     //MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
@@ -205,12 +205,12 @@ public class GG_GameManager : MonoBehaviour
                 string CheckId = www.downloadHandler.text;
                 Debug.Log(CheckId);
                 //string CheckId = JsonConvert.DeserializeObject<string>(www.downloadHandler.text); //서버에서 다른지 같은지 문자열로 알려줌
-                if (CheckId.Equals("﻿﻿﻿f﻿﻿﻿﻿﻿﻿alse")) //같은게 있으면 false로 답변 해주기로함
+                if (CheckId.Equals("﻿﻿﻿0")) //같은게 있으면 0로 답변 해주기로함
                 {
                     isDifferentId = false;
                     Debug.Log("같음");
                 }
-                else if(CheckId == "true") //같은게 없으면 true로 답변 해주기로함
+                else if(CheckId == "1") //같은게 없으면 1로 답변 해주기로함
                 {
                     isDifferentId = true;
                     Debug.Log("다름");
