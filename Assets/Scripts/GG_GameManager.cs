@@ -17,13 +17,15 @@ public class GG_GameManager : MonoBehaviour
     [SerializeField]
     private string nickname = string.Empty; // 닉네임 문자열
     [SerializeField]
-    private string birthday = string.Empty; // 생일 문자열
+    private string birthday = string.Empty; // 주민번호앞 문자열 // 990909
     [SerializeField]
     private int AR_Q = 0; // 복구질문번호 정수형
     [SerializeField]
     private string AR_A = string.Empty; // 복구답변 문자열
 
     private const string loginUri = "http://127.0.0.1/login.php";
+    private const string SameIdUri = "http://127.0.0.1/SameId.php";
+
 
     private void Start()
     {
@@ -92,8 +94,8 @@ public class GG_GameManager : MonoBehaviour
     private IEnumerator SameIdCheckCoroutine(string _id) //아이디 중복방지 코루틴
     {
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
-        form.AddField("id", _id); //서버에 id를 넘겨줌
-        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) 
+        form.AddField("Id", _id); //서버에 id를 넘겨줌
+        using (UnityWebRequest www = UnityWebRequest.Post(SameIdUri, form)) 
         {
             yield return www.SendWebRequest();
 
