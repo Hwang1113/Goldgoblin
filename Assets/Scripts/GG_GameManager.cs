@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,31 +6,31 @@ using Newtonsoft.Json;
 
 public class GG_GameManager : MonoBehaviour
 {
-    private bool isDifferentId = false; //¾ÆÀÌµğ Áßº¹ÀÎÁö ¾Æ´ÑÁö¸¦ ÀúÀåÇÏ´Â bool °ª
-    private bool isAllInfoChecked = false; //¸ğµç Ç×¸ñÀÌ trueÀÎÁö ¾Æ´ÑÁö ÀúÀåÇÏ´Â bool °ª
+    private bool isDifferentId = false; //ì•„ì´ë”” ì¤‘ë³µì¸ì§€ ì•„ë‹Œì§€ë¥¼ ì €ì¥í•˜ëŠ” bool ê°’
+    private bool isAllInfoChecked = false; //ëª¨ë“  í•­ëª©ì´ trueì¸ì§€ ì•„ë‹Œì§€ ì €ì¥í•˜ëŠ” bool ê°’
 
     [SerializeField]
     private LoginUIManager UImg = null;
     [SerializeField]
-    private string id = string.Empty; //¾ÆÀÌµğ ¹®ÀÚ¿­
+    private string id = string.Empty; //ì•„ì´ë”” ë¬¸ìì—´
     [SerializeField]
-    private string password = string.Empty; // ºñ¹Ğ¹øÈ£ ¹®ÀÚ¿­
+    private string password = string.Empty; // ë¹„ë°€ë²ˆí˜¸ ë¬¸ìì—´
     [SerializeField]
-    private string nickname = string.Empty; // ´Ğ³×ÀÓ ¹®ÀÚ¿­
+    private string nickname = string.Empty; // ë‹‰ë„¤ì„ ë¬¸ìì—´
     [SerializeField]
-    private string birthday = string.Empty; // ÁÖ¹Î¹øÈ£¾Õ ¹®ÀÚ¿­ // 990909
+    private string birthday = string.Empty; // ì£¼ë¯¼ë²ˆí˜¸ì• ë¬¸ìì—´ // 990909
     [SerializeField]
-    private int AR_Q = 0; // º¹±¸Áú¹®¹øÈ£ Á¤¼öÇü
+    private int AR_Q = 0; // ë³µêµ¬ì§ˆë¬¸ë²ˆí˜¸ ì •ìˆ˜í˜•
     [SerializeField]
-    private string AR_A = string.Empty; // º¹±¸´äº¯ ¹®ÀÚ¿­
+    private string AR_A = string.Empty; // ë³µêµ¬ë‹µë³€ ë¬¸ìì—´
 
 
 
-    //player item db ¹Ş¾Æ¿Â°É ÀúÀåÇÒ µ¥ÀÌÅÍÇüµé
+    //player item db ë°›ì•„ì˜¨ê±¸ ì €ì¥í•  ë°ì´í„°í˜•ë“¤
     private class InventoryitemDB
     {
-        private string itemNum { get; set; } //¾ÆÀÌÅÛ³Ñ¹ö ¹è¿­
-        private int ea { get; set; } // ¾ÆÀÌÅÛ °¹¼ö
+        private string itemNum { get; set; } //ì•„ì´í…œë„˜ë²„ ë°°ì—´
+        private int ea { get; set; } // ì•„ì´í…œ ê°¯ìˆ˜
     }
 
     List<InventoryitemDB> MyInventory = null;
@@ -44,14 +44,14 @@ public class GG_GameManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(LoginCoroutine(id)); //¾ÆÀÌµğ ºñ¹Ğ¹øÈ£ ¹Ş¾Æ¼­ ·Î±×ÀÎ ÄÚ·çÆ¾ ½ÃÀÛ
+        //StartCoroutine(LoginCoroutine(id)); //ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ ë°›ì•„ì„œ ë¡œê·¸ì¸ ì½”ë£¨í‹´ ì‹œì‘
 
-        UImg.onClickSubmitBtn = SignUpnfos; // SignUp¹öÆ°À» UI ¿¡¼­ ´©¸£¸é ´ë¸®ÀÚ°¡ SignUp_Infos ¸¦ ½ÇÇàÇÏ°Ô ¼³Á¤ÇÔ 
-        UImg.onClickIDCheckBtn = SameIdCheck;  //Áßº¹¹æÁö ¹öÆ°À»  UI¿¡¼­ ´©¸£¸é ´ë¸®ÀÚ°¡ Áßº¹¹æÁö¸¦ ½ÇÇàÇÔ
-        UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield ¸¦ Å¬¸¯ÇÏ¸é  isDifferentId = false; 
-        UImg.onClickSignUpBtn = GoSignUp; // ·Î±×ÀÎ Ã¢¿¡¼­ SignUp ¹öÆ°À» ´©¸£¸é GoSignUp(); 
-        UImg.onClickLoginBtn =Login; //·Î±×ÀÎ ¹öÆ°À» ´©¸£¸é Login() ½ÇÇà
-        UImg.onClickBackToLoginBtn = GoLogin; //backtologin ¹öÆ°À» ´©¸£¸é 
+        UImg.onClickSubmitBtn = SignUpnfos; // SignUpë²„íŠ¼ì„ UI ì—ì„œ ëˆ„ë¥´ë©´ ëŒ€ë¦¬ìê°€ SignUp_Infos ë¥¼ ì‹¤í–‰í•˜ê²Œ ì„¤ì •í•¨ 
+        UImg.onClickIDCheckBtn = SameIdCheck;  //ì¤‘ë³µë°©ì§€ ë²„íŠ¼ì„  UIì—ì„œ ëˆ„ë¥´ë©´ ëŒ€ë¦¬ìê°€ ì¤‘ë³µë°©ì§€ë¥¼ ì‹¤í–‰í•¨
+        UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield ë¥¼ í´ë¦­í•˜ë©´  isDifferentId = false; 
+        UImg.onClickSignUpBtn = GoSignUp; // ë¡œê·¸ì¸ ì°½ì—ì„œ SignUp ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ GoSignUp(); 
+        UImg.onClickLoginBtn =Login; //ë¡œê·¸ì¸ ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ Login() ì‹¤í–‰
+        UImg.onClickBackToLoginBtn = GoLogin; //backtologin ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ 
     }
     private void Login()
     {
@@ -59,7 +59,7 @@ public class GG_GameManager : MonoBehaviour
     }
     private void AllInfoCheck()
     {
-        if (isDifferentId/*¸ğµç Ç×¸ñÃ¼Å© ¿©±â¼­ ÇÔ*/)  //°ıÈ£¾È¿¡ Á¶°Ç ¸ğµÎ ³Ö±â
+        if (isDifferentId/*ëª¨ë“  í•­ëª©ì²´í¬ ì—¬ê¸°ì„œ í•¨*/)  //ê´„í˜¸ì•ˆì— ì¡°ê±´ ëª¨ë‘ ë„£ê¸°
         {
             isAllInfoChecked = true;
         }
@@ -68,74 +68,74 @@ public class GG_GameManager : MonoBehaviour
             isAllInfoChecked = false;
         }
     }
-    private void SignUpnfos() //µé¾î¿Â Á¤º¸µéÀ» °¡Áö°í È¸¿ø°¡ÀÔ ÄÚ·çÆ¾(SignUpCoroutine)À» ½ÃÀÛ 
+    private void SignUpnfos() //ë“¤ì–´ì˜¨ ì •ë³´ë“¤ì„ ê°€ì§€ê³  íšŒì›ê°€ì… ì½”ë£¨í‹´(SignUpCoroutine)ì„ ì‹œì‘ 
     {
-        AllInfoCheck(); //¸ğµç Ç×¸ñÃ¼Å© ½ÃÀÛ isAllInfoChecked¸¦ true È¤Àº false·Î ¹İÈ¯
+        AllInfoCheck(); //ëª¨ë“  í•­ëª©ì²´í¬ ì‹œì‘ isAllInfoCheckedë¥¼ true í˜¹ì€ falseë¡œ ë°˜í™˜
 
         if (!isAllInfoChecked) 
         {
-            Debug.Log("È®ÀÎµÇÁö ¾Ê´Â Ç×¸ñÀÌ ÀÖ½À´Ï´Ù");
+            Debug.Log("í™•ì¸ë˜ì§€ ì•ŠëŠ” í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤");
             return;
         }
 
-        id = UImg.Id;//UI¿¡ ÀûÈù Id¸¦ id¿¡ º¹»ç
+        id = UImg.Id;//UIì— ì íŒ Idë¥¼ idì— ë³µì‚¬
         Debug.Log("id:" + id);
 
         if (isDifferentId == true)
         {
-            StartCoroutine(SignUpCoroutine(id/*,password*/));
+            StartCoroutine(SignUpCoroutine(id,password));
         }
         else if (isDifferentId == false)
         {
-            Debug.Log("Id Áßº¹È®ÀÎ ÈÄ È¸¿ø°¡ÀÔ ");
+            Debug.Log("Id ì¤‘ë³µí™•ì¸ í›„ íšŒì›ê°€ì… ");
         }
     }
     private void SameIdCheck()
     {
         if (isDifferentId == true)
-        //³ªÁß¿¡ ¾ÆÀÌµğ¿¡ ÀûÈù°ªÀÌ ¹Ù²¼À»¶§ ´Ù½Ã 
-        //onValuechanged µî ÅëÇØ isDifferentId¸¦ false·Î ¹Ù²Ü°Í ¾È±×·¯¸é Áßº¹¹æÁöÃ¼Å©ÈÄ ¾ÆÀÌµğ¸¦ ¹Ù²Û ÈÄ È¸¿ø°¡ÀÔÇÒ ¼ö ÀÖÀ½ 11.20
+        //ë‚˜ì¤‘ì— ì•„ì´ë””ì— ì íŒê°’ì´ ë°”ê¼ˆì„ë•Œ ë‹¤ì‹œ 
+        //onValuechanged ë“± í†µí•´ isDifferentIdë¥¼ falseë¡œ ë°”ê¿€ê²ƒ ì•ˆê·¸ëŸ¬ë©´ ì¤‘ë³µë°©ì§€ì²´í¬í›„ ì•„ì´ë””ë¥¼ ë°”ê¾¼ í›„ íšŒì›ê°€ì…í•  ìˆ˜ ìˆìŒ 11.20
         {
-            Debug.Log("¾ÆÀÌµğ »ı¼º °¡´É(Áßº¹µÈ °Ô ¾øÀ½)");
+            Debug.Log("ì•„ì´ë”” ìƒì„± ê°€ëŠ¥(ì¤‘ë³µëœ ê²Œ ì—†ìŒ)");
             return;
         }
         if (isDifferentId == false)
         {
             id = UImg.Id;
-            StartCoroutine(SameIdCheckCoroutine(id));// ÄÚ·çÆ¾ ¾È¿¡¼­ Áßº¹µÈÁö È®ÀÎÇØ¼­ ÄÚ·çÆ¾¿¡¼­ isDifferentId¸¦ false³ª true·Î ¹Ù²ãÁÜ
+            StartCoroutine(SameIdCheckCoroutine(id));// ì½”ë£¨í‹´ ì•ˆì—ì„œ ì¤‘ë³µëœì§€ í™•ì¸í•´ì„œ ì½”ë£¨í‹´ì—ì„œ isDifferentIdë¥¼ falseë‚˜ trueë¡œ ë°”ê¿”ì¤Œ
             if (isDifferentId == true)
-                Debug.Log("¾ÆÀÌµğ »ı¼º °¡´É(Áßº¹µÈ °Ô ¾øÀ½)");
+                Debug.Log("ì•„ì´ë”” ìƒì„± ê°€ëŠ¥(ì¤‘ë³µëœ ê²Œ ì—†ìŒ)");
             else if(isDifferentId == false)
-                Debug.Log("¾ÆÀÌµğ »ı¼º ºÒ°¡´É(Áßº¹)");
+                Debug.Log("ì•„ì´ë”” ìƒì„± ë¶ˆê°€ëŠ¥(ì¤‘ë³µ)");
         }
     }
-    private void GoSignUp() //·Î±×ÀÎ Ã¢À» ²ö´Ù, È¸¿ø°¡ÀÔÃ¢À» Å²´Ù.
+    private void GoSignUp() //ë¡œê·¸ì¸ ì°½ì„ ëˆë‹¤, íšŒì›ê°€ì…ì°½ì„ í‚¨ë‹¤.
     {
         UImg.SetLoginMenuActivation(false);
         UImg.SetSignupMenuActivation(true);
     }    
-    private void GoLogin() // È¸¿ø°¡ÀÔÃ¢À» ²ö´Ù, ·Î±×ÀÎÃ¢À» Å²´Ù.
+    private void GoLogin() // íšŒì›ê°€ì…ì°½ì„ ëˆë‹¤, ë¡œê·¸ì¸ì°½ì„ í‚¨ë‹¤.
     {
         UImg.SetSignupMenuActivation(false);
         UImg.SetLoginMenuActivation(true);
     }
-    private void IdCheckFalse() //isDifferentId = false; ·Î ¸¸µë
+    private void IdCheckFalse() //isDifferentId = false; ë¡œ ë§Œë“¬
     {
         isDifferentId = false;
-        Debug.Log("¾ÆÀÌµğ ÀÔ·Â ÈÄ Áßº¹Ã¼Å©¸¦ ´©¸£½Ã¿À");
+        Debug.Log("ì•„ì´ë”” ì…ë ¥ í›„ ì¤‘ë³µì²´í¬ë¥¼ ëˆ„ë¥´ì‹œì˜¤");
     }
 
 
     //////////////////////////////////////////////////
-    //¹ØÀ¸·Î´Â DBµ¥ÀÌÅÍ Àü´Ş °ü·Ã ÄÚ·çÆ¾¸¸
+    //ë°‘ìœ¼ë¡œëŠ” DBë°ì´í„° ì „ë‹¬ ê´€ë ¨ ì½”ë£¨í‹´ë§Œ
     //////////////////////////////////////////////////
-    private IEnumerator SignUpCoroutine(string _id/*, string _password*/) //°¡Á®¿Â Á¤º¸µéÀ» ¼­¹ö¿¡ Àü´Ş , È¸¿ø°¡ÀÔ ÄÚ·çÆ¾ 
+    private IEnumerator SignUpCoroutine(string _id, string _password) //ê°€ì ¸ì˜¨ ì •ë³´ë“¤ì„ ì„œë²„ì— ì „ë‹¬ , íšŒì›ê°€ì… ì½”ë£¨í‹´ 
     {
-        WWWForm form = new WWWForm(); //¼­¹ö Àü´Ş ÇüÅÂ¸¦ Á¤ÇÔ
+        WWWForm form = new WWWForm(); //ì„œë²„ ì „ë‹¬ í˜•íƒœë¥¼ ì •í•¨
         form.AddField("Id", _id);
-        //form.AddField("Password", _password);
-        //À¥¼­¹ö´Â ºñµ¿±â ¹æ½Ä
-        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post´Â º¸¾È //getÀº ¼Óµµ
+        form.AddField("Password", _password);
+        //ì›¹ì„œë²„ëŠ” ë¹„ë™ê¸° ë°©ì‹
+        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //postëŠ” ë³´ì•ˆ //getì€ ì†ë„
         {
             yield return www.SendWebRequest();
 
@@ -150,13 +150,13 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator SignInCoroutine(string _id, string _password) //°¡Á®¿Â Á¤º¸µéÀ» ¼­¹ö¿¡ Àü´Ş, ·Î±×ÀÎ ÄÚ·çÆ¾ 
+    private IEnumerator SignInCoroutine(string _id, string _password) //ê°€ì ¸ì˜¨ ì •ë³´ë“¤ì„ ì„œë²„ì— ì „ë‹¬, ë¡œê·¸ì¸ ì½”ë£¨í‹´ 
     {
-        WWWForm form = new WWWForm(); //¼­¹ö Àü´Ş ÇüÅÂ¸¦ Á¤ÇÔ
+        WWWForm form = new WWWForm(); //ì„œë²„ ì „ë‹¬ í˜•íƒœë¥¼ ì •í•¨
         form.AddField("Id", _id);
         form.AddField("Password", _password);
-        //À¥¼­¹ö´Â ºñµ¿±â ¹æ½Ä
-        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post´Â º¸¾È //getÀº ¼Óµµ
+        //ì›¹ì„œë²„ëŠ” ë¹„ë™ê¸° ë°©ì‹
+        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //postëŠ” ë³´ì•ˆ //getì€ ì†ë„
         {
             yield return www.SendWebRequest();
 
@@ -170,25 +170,26 @@ public class GG_GameManager : MonoBehaviour
                 //Debug.Log(www.downloadHandler.text);
 
 
-                //·Î±×ÀÎ ¼º°ø ÇÏ¸é ¼­¹ö¿¡¼­ ¹» ´ë´äÇÏ³Ä
+                //ë¡œê·¸ì¸ ì„±ê³µ í•˜ë©´ ì„œë²„ì—ì„œ ë­˜ ëŒ€ë‹µí•˜ëƒ
                 string data = www.downloadHandler.text; 
-                if (data == "false")                //·Î±×ÀÎ ½ÇÆĞ½Ã php¿¡¼± ¹®ÀÚ¿­ "false"·Î ¹İÈ¯ ÇÏ±â·Î ÇÔ.
+                if (data == "false")                //ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ phpì—ì„  ë¬¸ìì—´ "false"ë¡œ ë°˜í™˜ í•˜ê¸°ë¡œ í•¨.
                 {
                     UImg.PrintLoginError();
                 }
-                else
+                else if(data == "true")
                 {
-                    MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
-                    //json Çü½ÄÀ¸·Î ÀÛ¼ºµÈ "¹®ÀÚ¿­" ¾ÆÀÌÅÛ Á¤º¸¸¦ ¹Ş¾Æ¿Í¼­ ¿ªÁ÷·ÄÈ­¸¦ ÅëÇØ °ÔÀÓ¸Å´ÏÀú°¡ ¾ÆÀÌÅÛDB ¹Ş¾Æ¿È, ÀÛ¼ºÇØ¾ßÇÔ
+                    Debug.Log("ë¡œê·¸ì¸ ì„±ê³µ");
+                    //MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
+                    //json í˜•ì‹ìœ¼ë¡œ ì‘ì„±ëœ "ë¬¸ìì—´" ì•„ì´í…œ ì •ë³´ë¥¼ ë°›ì•„ì™€ì„œ ì—­ì§ë ¬í™”ë¥¼ í†µí•´ ê²Œì„ë§¤ë‹ˆì €ê°€ ì•„ì´í…œDB ë°›ì•„ì˜´, ì‘ì„±í•´ì•¼í•¨
                 }
             }
         }
     }
 
-    private IEnumerator SameIdCheckCoroutine(string _id) //¾ÆÀÌµğ Áßº¹¹æÁö ÄÚ·çÆ¾
+    private IEnumerator SameIdCheckCoroutine(string _id) //ì•„ì´ë”” ì¤‘ë³µë°©ì§€ ì½”ë£¨í‹´
     {
-        WWWForm form = new WWWForm(); //¼­¹ö Àü´Ş ÇüÅÂ¸¦ Á¤ÇÔ
-        form.AddField("Id", _id); //¼­¹ö¿¡ id¸¦ ³Ñ°ÜÁÜ
+        WWWForm form = new WWWForm(); //ì„œë²„ ì „ë‹¬ í˜•íƒœë¥¼ ì •í•¨
+        form.AddField("Id", _id); //ì„œë²„ì— idë¥¼ ë„˜ê²¨ì¤Œ
         using (UnityWebRequest www = UnityWebRequest.Post(sameidUri, form)) 
         {
             yield return www.SendWebRequest();
@@ -200,19 +201,23 @@ public class GG_GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
-                string CheckId = www.downloadHandler.text; //¼­¹ö¿¡¼­ ´Ù¸¥Áö °°ÀºÁö ¹®ÀÚ¿­·Î ¾Ë·ÁÁÜ
-                if (CheckId == "false") //°°Àº°Ô ÀÖÀ¸¸é false·Î ´äº¯ ÇØÁÖ±â·ÎÇÔ
+                //string CheckId = www.downloadHandler.text.Replace("\uFEFF", "");
+                string CheckId = www.downloadHandler.text;
+                Debug.Log(CheckId);
+                //string CheckId = JsonConvert.DeserializeObject<string>(www.downloadHandler.text); //ì„œë²„ì—ì„œ ë‹¤ë¥¸ì§€ ê°™ì€ì§€ ë¬¸ìì—´ë¡œ ì•Œë ¤ì¤Œ
+                if (CheckId.Equals("ï»¿ï»¿ï»¿fï»¿ï»¿ï»¿ï»¿ï»¿ï»¿alse")) //ê°™ì€ê²Œ ìˆìœ¼ë©´ falseë¡œ ë‹µë³€ í•´ì£¼ê¸°ë¡œí•¨
                 {
                     isDifferentId = false;
+                    Debug.Log("ê°™ìŒ");
                 }
-                else if(CheckId == "true") //°°Àº°Ô ¾øÀ¸¸é true·Î ´äº¯ ÇØÁÖ±â·ÎÇÔ
+                else if(CheckId == "true") //ê°™ì€ê²Œ ì—†ìœ¼ë©´ trueë¡œ ë‹µë³€ í•´ì£¼ê¸°ë¡œí•¨
                 {
                     isDifferentId = true;
+                    Debug.Log("ë‹¤ë¦„");
                 }
                 else 
                 {
-                    Debug.Log("¼­¹ö°¡ ÀÌ»óÇØ¿ä");
+                    Debug.Log("ì„œë²„ê°€ ì´ìƒí•´ìš”");
                 }
             }
         }

@@ -10,6 +10,7 @@ $UserNickname = $_POST["Nickname"];
 $UserBirthday = $_POST["Birthday"];
 $UserAR_Q = $_POST["AR_Q"];
 $UserAR_A = $_POST["AR_A"];
+//total6
 //$loginPass = $_POST["loginPass"];
 
 $conn = new mysqli($servername,
