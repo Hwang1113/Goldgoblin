@@ -8,13 +8,15 @@ public class PrintError : MonoBehaviour
 
     public void PrintErrorMessage(string _error)
     {
-        gameObject.SetActive(true);
+        if(!text_Error.gameObject.activeInHierarchy)
+            text_Error.gameObject.SetActive(true);
 
         text_Error.text = _error;
     }
 
     public void HideErrorMessage()
     {
-        gameObject.SetActive(false);
+        if (text_Error.gameObject.activeInHierarchy)
+            text_Error.gameObject.SetActive(false);
     }
 }

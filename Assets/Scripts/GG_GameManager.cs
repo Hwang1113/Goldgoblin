@@ -37,15 +37,9 @@ public class GG_GameManager : MonoBehaviour
 
 
     private const string loginUri = "http://127.0.0.1/login.php";
-<<<<<<< HEAD
-    private const string signUri = "http://127.0.0.1/signin.php";
-    private const string sameidUri = "http://127.0.0.1/sameid.php";
-    private const string inventoryUri = "";
-=======
+
     private const string signinUri = "http://127.0.0.1/signin.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
-
->>>>>>> NewH
 
     private void Start()
     {
