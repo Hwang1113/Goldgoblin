@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ItemSlotUI : MonoBehaviour, IPointerClickHandler
 {
-    public delegate void OnSlotClickDelegate(int _clickedInd);
+    public delegate void OnSlotLeftClickDelegate(int _clickedInd);
+    public delegate void OnSlotRightClickDelegate(int _clickedInd);
 
-    public OnSlotClickDelegate onSlotClick = null;
+    public OnSlotLeftClickDelegate onSlotLeftClick = null;
+    public OnSlotRightClickDelegate onSlotRightClick = null;
 
     [SerializeField]
     private Image image_ItemIcon = null;
@@ -22,7 +24,16 @@ public class ItemSlotUI : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.LogFormat("Click Slot : {0}", gameObject.name);
-        onSlotClick?.Invoke(slotInd);
+
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            onSlotLeftClick?.Invoke(slotInd);
+        }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            onSlotRightClick?.Invoke(slotInd);
+        }
+
     }
     public void SetItemSlot(string _imgPath, int _count)
     {

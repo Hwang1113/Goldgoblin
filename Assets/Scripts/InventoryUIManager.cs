@@ -16,14 +16,23 @@ public class InventoryUIManager : MonoBehaviour
     private ItemDataUI itemData = null;
 
     /// <summary>
-    /// 특정 슬롯 클릭 시 호출되는 델리게이트를 리턴함.
-    /// 이를 통해 각 슬롯마다 클릭했을 때 호출할 함수를 지정할 수 있음.
+    /// 특정 슬롯 왼 쪽 클릭 시 호출되는 델리게이트를 리턴함.
     /// </summary>
     /// <param name="_slotInd">어떤 슬롯인지 판단하는 인덱스 번호</param>
     /// <returns></returns>
-    public ItemSlotUI.OnSlotClickDelegate GetSlotClickDelegate(int _slotInd)
+    public ItemSlotUI.OnSlotLeftClickDelegate GetSlotLeftClickDelegate(int _slotInd)
     {
-        return itemBag.ItemSlots[_slotInd].onSlotClick;
+        return itemBag.ItemSlots[_slotInd].onSlotLeftClick;
+    }
+
+    /// <summary>
+    /// 특정 슬롯 오른 쪽 클릭 시 호출되는 델리게이트를 리턴함.
+    /// </summary>
+    /// <param name="_slotInd">어떤 슬롯인지 판단하는 인덱스 번호</param>
+    /// <returns></returns>
+    public ItemSlotUI.OnSlotRightClickDelegate GetSlotRightClickDelegate(int _slotInd)
+    {
+        return itemBag.ItemSlots[_slotInd].onSlotRightClick;
     }
 
     /// <summary>
