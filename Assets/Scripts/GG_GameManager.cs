@@ -78,7 +78,7 @@ public class GG_GameManager : MonoBehaviour
     }
     private void SameIdCheck()
     {
-        StartCoroutine(SameIdCheckCoroutine(id));            // 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
+        StartCoroutine(SameIdCheckCoroutine());            // 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
     }
     private void GoSignUp() //로그인 창을 끈다, 회원가입창을 킨다.
     {
@@ -179,11 +179,11 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator SameIdCheckCoroutine(string _id) //아이디 중복방지 코루틴
+    private IEnumerator SameIdCheckCoroutine() //아이디 중복방지 코루틴
     {
-
+        id = UImg.Id;
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
-        form.AddField("Id", _id); //서버에 id를 넘겨줌
+        form.AddField("Id", id); //서버에 id를 넘겨줌
         using (UnityWebRequest www = UnityWebRequest.Post(sameidUri, form))
         {
             yield return www.SendWebRequest();
@@ -196,19 +196,20 @@ public class GG_GameManager : MonoBehaviour
             else
             {
                 //string CheckId = www.downloadHandler.text.Replace("\uFEFF", "");
-                //string CheckId = www.downloadHandler.text; //오염된 데이터
-                string CheckId = "This  is    a   test&nbsp;string  with  unnecessary   spaces."; 
+                string CheckId = www.downloadHandler.text; //오염된 데이터
+                //string CheckId = "This  is    a   test&nbsp;string  with  unnecessary   spaces."; 
                 string pattern = @"(\s|\u00A0)+"; // 정규표현식 패턴 지정 
-                CheckId = Regex.Replace(CheckId, pattern, " ").Trim();//정화
-
+                CheckId = Regex.Replace(CheckId, pattern,"").Trim();//정화
                 Debug.Log(CheckId);
-                //string CheckId = JsonConvert.DeserializeObject<string>(www.downloadHandler.text); //서버에서 다른지 같은지 문자열로 알려줌
-                if (CheckId.Equals("﻿﻿﻿0")) //같은게 있으면 0로 답변 해주기로함
+                foreach(int i in CheckId )// 쓰레기 있는지 확인
+                     Debug.Log(i);
+                //서버에서 다른지 같은지 문자열로 알려줌
+                if (CheckId == "0") //같은게 있으면 "0"로 답변 해주기로함
                 {
                     isDifferentId = false;
                     Debug.Log("같음");
                 }
-                else if (CheckId == "1") //같은게 없으면 1로 답변 해주기로함
+                else if (CheckId == "1") //같은게 없으면 "1"로 답변 해주기로함
                 {
                     isDifferentId = true;
                     Debug.Log("다름");

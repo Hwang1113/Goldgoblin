@@ -5,6 +5,7 @@ public class GG_ItemManager : MonoBehaviour
 {
 
     public delegate void destroyItem1Delegate();
+
     public destroyItem1Delegate itemDestroy1 = null;
     //아이템 정보
     public int itemNum {get; set;}
