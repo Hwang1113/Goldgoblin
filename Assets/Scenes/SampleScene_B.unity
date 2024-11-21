@@ -7090,7 +7090,7 @@ MonoBehaviour:
   id: 
   password: 
   nickname: 
-  birthday: 
+  birthday: 0
   AR_Q: 0
   AR_A: 
 --- !u!1 &1335557009
