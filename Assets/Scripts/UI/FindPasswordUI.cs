@@ -19,6 +19,8 @@ public class FindPasswordUI : MonoBehaviour
     private TMP_Dropdown recoveryAnswerDropdown = null;
     [SerializeField]
     private TextMeshProUGUI text_Password = null;
+    [SerializeField]
+    private GameObject loginMenu = null;
 
     private string userId = string.Empty;
     private int recoveryAnswerInd = 0;
@@ -44,6 +46,11 @@ public class FindPasswordUI : MonoBehaviour
     public PrintError PrintErr
     {
         get { return printErr; }
+    }
+
+    public GameObject LoginMenu
+    {
+        get { return loginMenu; }
     }
 
     private void OnDisable()

@@ -6,7 +6,7 @@ public class FindPasswordManager : MonoBehaviour
 {
     private FindPasswordUI findPasswordUI = null;
 
-    private const string searchPasswordUri = "http://127.0.0.1/?.php"
+    private const string searchPasswordUri = "http://127.0.0.1/findpassword.php";
 
     private void Awake()
     {
@@ -16,11 +16,19 @@ public class FindPasswordManager : MonoBehaviour
     private void Start()
     {
         findPasswordUI.onClickSubmit = Submit;
+        findPasswordUI.onClickBackToLogin = BackToLogin;
     }
 
     private void Submit()
     {
         StartCoroutine(SubmitCoroutine());
+    }
+
+    private void BackToLogin()
+    {
+        findPasswordUI.LoginMenu.SetActive(true);
+
+        gameObject.SetActive(false);
     }
 
     private IEnumerator SubmitCoroutine()
