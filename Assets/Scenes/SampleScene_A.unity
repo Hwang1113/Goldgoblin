@@ -8768,6 +8768,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8294907691975638897, guid: 81c3a1d0916ed214fb4c0a08557624ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16293,6 +16297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0afec5a5486c5145867ce6b1cdb1eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  findPasswordGo: {fileID: 2094504532}
   login_Error: {fileID: 301275903}
   signup_idError: {fileID: 1428028682}
   signup_pwError: {fileID: 1814528154}

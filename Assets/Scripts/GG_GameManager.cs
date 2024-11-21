@@ -6,6 +6,7 @@ using System.Text.RegularExpressions; //정규표현식
 using Newtonsoft.Json;
 using static GG_ItemManager;
 using NUnit.Framework;
+using System;
 
 
 public class GG_GameManager : MonoBehaviour
@@ -31,12 +32,14 @@ public class GG_GameManager : MonoBehaviour
     [SerializeField]
     private string AR_A = string.Empty; // 복구답변 문자열
 
+    List<ItemData> itemDatas = null;
     //player item db 받아온걸 저장할 데이터형들
 
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     private const string getinvenUri = "http://127.0.0.1/getinven.php";
+    private const string getitemUri = "http://127.0.0.1/getitem.php";
 
 
     private void Start()
@@ -47,7 +50,9 @@ public class GG_GameManager : MonoBehaviour
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
         UImg.onClickLoginBtn = Login; //로그인 버튼을 누르면 Login() 실행
         UImg.onClickBackToLoginBtn = BacktoLogin; //backtologin 버튼을 누르면 
+        UImg.onClickFindPasswordBtn = GoFindPasword;
         InvenUImg.OnClickLogoutBtn = Logout; // 로그아웃
+
     } // 델리게이트를 통해 버튼 상호작용 구현
     private void Login()
     {
@@ -60,6 +65,11 @@ public class GG_GameManager : MonoBehaviour
         InvenUImg.gameObject.SetActive(false);// inventory UI 비활성화
         UImg.SetLoginMenuActivation(true);
     }
+    private void GoFindPasword()    
+    {
+        UImg.findPasswordGo.SetActive(true);
+        UImg.SetLoginMenuActivation(false);
+    }//비밀번호 찾기 창으로 가는 함수
     private void AllInfoCheck()
     {
         //id = UImg.Id;//UI에 적힌 Id를 id에 복사
@@ -114,8 +124,9 @@ public class GG_GameManager : MonoBehaviour
     //////////////////////////////////////////////////
     //밑으로는 DB데이터 전달 관련 코루틴만
     //////////////////////////////////////////////////
-    private IEnumerator SignInCoroutine() //가져온 정보들을 서버에 전달 , 로그인 코루틴 
+    private IEnumerator SignInCoroutine() //가져온 로그인 정보들을 서버에 전달 , 로그인 코루틴 , 로그인 성공하면 ID를 이용해서 inventory를 연다 
     {
+        Debug.Log("시도");
         id = UImg.Id;
         password = UImg.Password;
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
@@ -149,7 +160,7 @@ public class GG_GameManager : MonoBehaviour
 
             }
         }
-    }
+    } 
     private IEnumerator GetInventory() //inventory slot 정보 가져옴
     {
         Debug.Log("접속할 ID :" + id);
@@ -175,9 +186,17 @@ public class GG_GameManager : MonoBehaviour
                 {
                     Debug.Log(InventoryItem.ItemNum + " : " + InventoryItem.EA);
                     //디버그 로그가 잘 확인되면 invenslot에 정보가 잘 담긴 것
-                    UImg.SetLoginMenuActivation(false);//로그인 UI 끄고
-                    InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
                 }
+                StartCoroutine(CallAllItemDB());
+
+                UImg.SetLoginMenuActivation(false);//로그인 UI 끄고
+                //반복 foreach (Inventoryslot InventoryItem in invenslot)
+                //1..slot prefab을 instantiate(조건문 : 아이템이 없으면 return을 통해서 반복문 탈출) 
+                //2..Icon을 ItemNum을 통해서 찾는다
+                //3..갯수를 EA를 통해서 적는다
+
+                InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
+
                 // List<Inventoryslot> newList = invenslot.OrderBy(p => p.ItemNum).ToList();
 
             }
@@ -287,5 +306,33 @@ public class GG_GameManager : MonoBehaviour
                 }
             }
         }
+    }
+    private IEnumerator CallAllItemDB() // tb_item 
+    {
+        using (UnityWebRequest www = UnityWebRequest.PostWwwForm(getitemUri, string.Empty))
+        {
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.ConnectionError ||
+                www.result == UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                string itemdatastr = www.downloadHandler.text;// 오염된 데이터
+                string pattern = @"(\s|\u00A0)+"; // 정규표현식 패턴 지정 
+                itemdatastr = Regex.Replace(itemdatastr, pattern, "").Trim();//정화
+
+                Debug.Log(itemdatastr);
+
+                itemDatas = JsonConvert.DeserializeObject<List<ItemData>>(itemdatastr);
+
+                foreach (ItemData item in itemDatas)
+                {
+                    Debug.Log(item.Name + item.Rarity + item.ItemNumber + item.Des + item.Icon);
+                }
+            }
+        }
+
     }
 }
