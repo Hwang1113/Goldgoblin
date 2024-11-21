@@ -1,0 +1,10 @@
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('1', '체력 물약', '체력 회복', '흔함', 'Icons\\\\Potion\\\\Red Potion 3');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('2', '방패', '막기', '흔하지 않음', 'Icons\\\\Weapon & Tool\\\\Wooden Shield');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('3', '검', '찌르기', '흔하지 않음', 'Icons\\\\Weapon & Tool\\\\Iron Sword');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('4', '투구', '방어력 증가', '희귀함', 'Icons\\\\Equipment\\\\Iron Helmet');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('5', '마나 물약', '마나 회복', '흔하지 않음', 'Icons\\\\Potion\\\\Blu Potion 2');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('6', '도끼', '강한 공격', '흔하지 않음', 'Icons\\\\Weapon & Tool\\\\Axe');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('7', '완드', '마법 공격', '희귀함', 'Icons\\\\Weapon & Tool\\\\Magic Wand');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('8', '열쇠', '문을 열 수 있다.', '흔하지 않음', 'Icons\\\\Misc\\\\Iron Key');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('9', '지도', '맵을 볼 수 있다.', '희귀함', 'Icons\\\\Misc\\\\Map');
+INSERT INTO `tb_item` (`ItemNumber`, `Name`, `Des`, `Rarity`, `Icon`) VALUES ('10', '신발', '달리기 속도 증가', '희귀함', 'Icons\\\\Equipment\\\\Leather Boot');
