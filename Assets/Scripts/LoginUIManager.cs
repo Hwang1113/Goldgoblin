@@ -8,6 +8,7 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
+    public delegate void OnClickFindAccountBtnDelegate();
     public delegate void OnClickBackToLoginBtnDelegate();
     public delegate void OnSelectSignupIDInputfiledDelegate();
     #endregion
@@ -43,6 +44,11 @@ public class LoginUIManager : MonoBehaviour
     /// 회원가입 창에서 다시 로그인 창으로 돌아가는 버튼 누를 시 호출되는 델리게이트.
     /// </summary>
     public OnClickBackToLoginBtnDelegate onClickBackToLoginBtn = null;
+
+    /// <summary>
+    /// 로그인 창에서 계정 정보 찾기 버튼을 눌렀을 시 호출되는 델리게이트.
+    /// </summary>
+    public OnClickFindAccountBtnDelegate onClickFindAccountBtn = null;
 
     #endregion
 
@@ -85,6 +91,8 @@ public class LoginUIManager : MonoBehaviour
     private GameObject loginMenu = null;
     [SerializeField]
     private GameObject signupMenu = null;
+    [SerializeField]
+    private GameObject findAccountMenu = null;
     #endregion
 
     #region 내부 변수
@@ -162,6 +170,11 @@ public class LoginUIManager : MonoBehaviour
     public void OnSelectSignupId()
     {
         onSelectSignupIDInputfiled?.Invoke();
+    }
+
+    public void OnClickFindAccount()
+    {
+        onClickFindAccountBtn?.Invoke();
     }
 
     public void OnEndEditSignupId()
