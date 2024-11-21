@@ -8,9 +8,10 @@ public class LoginUIManager : MonoBehaviour
     public delegate void OnClickLoginBtnDelegate();
     public delegate void OnClickSignUpBtnDelegate();
     public delegate void OnClickIDCheckBtnDelegate();
-    public delegate void OnClickFindAccountBtnDelegate();
+    public delegate void OnClickFindPasswordBtnDelegate();
     public delegate void OnClickBackToLoginBtnDelegate();
     public delegate void OnSelectSignupIDInputfiledDelegate();
+    public delegate void onClickFindPasswordSubmitBtnDelegate();
     #endregion
 
     #region 델리게이트 변수
@@ -48,7 +49,9 @@ public class LoginUIManager : MonoBehaviour
     /// <summary>
     /// 로그인 창에서 계정 정보 찾기 버튼을 눌렀을 시 호출되는 델리게이트.
     /// </summary>
-    public OnClickFindAccountBtnDelegate onClickFindAccountBtn = null;
+    public OnClickFindPasswordBtnDelegate onClickFindPasswordBtn = null;
+
+    public OnClickFindPasswordBtnDelegate onClickFindPasswordSubmitBtn = null;
 
     #endregion
 
@@ -92,7 +95,7 @@ public class LoginUIManager : MonoBehaviour
     [SerializeField]
     private GameObject signupMenu = null;
     [SerializeField]
-    private GameObject findAccountMenu = null;
+    private GameObject findPasswordMenu = null;
     #endregion
 
     #region 내부 변수
@@ -172,9 +175,14 @@ public class LoginUIManager : MonoBehaviour
         onSelectSignupIDInputfiled?.Invoke();
     }
 
-    public void OnClickFindAccount()
+    public void OnClickFindPassword()
     {
-        onClickFindAccountBtn?.Invoke();
+        onClickFindPasswordBtn?.Invoke();
+    }
+
+    public void OnClickFindPasswordSubmit()
+    {
+        onClickFindPasswordSubmitBtn?.Invoke();
     }
 
     public void OnEndEditSignupId()
