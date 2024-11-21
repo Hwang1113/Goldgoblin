@@ -1,0 +1,26 @@
+id 	inventory 						
+
+"qws",	[{'itemnumber':1, 'ea':5},{'itemnumber':2, 'ea':50}]
+"qssde",	[{'itemnumber':5, 'ea':10},{'itemnumber':4, 'ea':8}]
+
+public class itemData
+{
+int number;
+string name;
+string desc;
+string rarity;
+}
+
+public class itemSlot
+{
+int itemnumber;
+int ea;
+}
+
+
+
+List<item> inventory = JsonConvert.DeserializeObject<List<item>>(str);
+
+Select inventoryJson FROM tb_inven WHERE id = 'id'
+
+$result->row

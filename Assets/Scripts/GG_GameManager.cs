@@ -47,6 +47,12 @@ public class GG_GameManager : MonoBehaviour
     }
     private void AllInfoCheck()
     {
+        //id = UImg.Id;//UI에 적힌 Id를 id에 복사
+        //password = UImg.Password; //UI에 적힌 password 복사
+        //nickname = UImg.Nickname;
+        //birthday = UImg.BirthDate;
+        //AR_Q = UImg.RecoveryInd;
+        AR_A = UImg.RecoveryAnswer;
         if (isDifferentId && UImg.IsIdFormatCorrect() && UImg.IsPwFormatCorrect() &&
             UImg.IsPwCheckCorrect() && UImg.IsBirthDateFormatCorrect() && AR_A != string.Empty)  
             //괄호안에 조건 모두 넣기 차례대로 아이디중복, 아이디 포맷,비밀번호 포맷,비밀번호확인, 생년월일 , 질문 답변을 적었으면
@@ -74,7 +80,7 @@ public class GG_GameManager : MonoBehaviour
     private void SameIdCheck()
     {
         StartCoroutine(SameIdCheckCoroutine());            // 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
-    }
+    }// 아이디 중복방지 코루틴을 돌린다.
     private void GoSignUp() //로그인 창을 끈다, 회원가입창을 킨다.
     {
         UImg.SetLoginMenuActivation(false);
@@ -121,11 +127,20 @@ public class GG_GameManager : MonoBehaviour
                 if (loginResult == "1")//로그인시도, 정보대조후 알맞는게 있다
                 {
                     Debug.Log("로그인 가능"); //InventoryUri 만들어서 호출해야할듯
+                    StartCoroutine(GetInventory());
                 }
 
             }
         }
     }
+    private IEnumerator GetInventory()
+    {
+        WWWForm form = new WWWForm(); //서버 전달 형태를 정함
+        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post는 보안 //get은 속도
+        {
+            yield return www.SendWebRequest();
+        }
+    } //인벤토리 정보를 서버에서 가져옴
     private IEnumerator SignUpCoroutine() //가져온 정보들을 서버에 전달, 회원가입 코루틴 
     {
         id = UImg.Id;//UI에 적힌 Id를 id에 복사
@@ -138,6 +153,10 @@ public class GG_GameManager : MonoBehaviour
 
         Debug.Log("id:" + id);
         Debug.Log("password:" + password);
+        Debug.Log("Nickname" + nickname);
+        Debug.Log("Birthday"+ birthday);
+        Debug.Log("AR_Q"+ AR_Q);
+        Debug.Log("AR_A"+ AR_A);
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
 
         form.AddField("Id", id);
@@ -196,8 +215,8 @@ public class GG_GameManager : MonoBehaviour
                 string pattern = @"(\s|\u00A0)+"; // 정규표현식 패턴 지정 
                 CheckId = Regex.Replace(CheckId, pattern,"").Trim();//정화
                 Debug.Log(CheckId);
-                foreach(int i in CheckId )// 쓰레기 있는지 확인
-                     Debug.Log(i);
+                //foreach(int i in CheckId )// 쓰레기 있는지 확인
+                //     Debug.Log(i);
                 //서버에서 다른지 같은지 문자열로 알려줌
                 if (CheckId == "0") //같은게 있으면 "0"로 답변 해주기로함
                 {

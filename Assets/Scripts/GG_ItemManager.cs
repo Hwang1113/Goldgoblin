@@ -8,10 +8,12 @@ public class GG_ItemManager : MonoBehaviour
 
     public destroyItem1Delegate itemDestroy1 = null;
     //아이템 정보
+    public string invenId { get; set; }
     public int itemNum {get; set;}
     public string itemName { get; set; }
     public string itemInfo { get; set; }
     public string itemRarity { get; set; }
+    public string itemIconPath { get; set; }
 
     [SerializeField]
     public string nickname = string.Empty;
