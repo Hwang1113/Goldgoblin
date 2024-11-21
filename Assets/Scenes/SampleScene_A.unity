@@ -8583,6 +8583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UImg: {fileID: 2027840273}
+  InvenUImg: {fileID: 1684204225}
   id: 
   password: 
   nickname: 

@@ -3,15 +3,20 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions; //정규표현식
+using Newtonsoft.Json;
+using static GG_ItemManager;
 
 
 public class GG_GameManager : MonoBehaviour
 {
     private bool isDifferentId = false; //아이디 중복인지 아닌지를 저장하는 bool 값
     private bool isAllInfoChecked = false; //모든 항목이 true인지 아닌지 저장하는 bool 값
-
+    //[SerializeField]
+    //private GG_ItemManager Itmg = null;
     [SerializeField]
-    private LoginUIManager UImg = null;
+    private LoginUIManager UImg = null;    
+    [SerializeField]
+    private InventoryUIManager InvenUImg = null;
     [SerializeField]
     private string id = string.Empty; //아이디 문자열
     [SerializeField]
@@ -40,10 +45,18 @@ public class GG_GameManager : MonoBehaviour
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
         UImg.onClickLoginBtn = Login; //로그인 버튼을 누르면 Login() 실행
         UImg.onClickBackToLoginBtn = GoLogin; //backtologin 버튼을 누르면 
-    }
+        InvenUImg.OnClickLogoutBtn = Logout; // 로그아웃
+    } // 델리게이트를 통해 버튼 상호작용 구현
     private void Login()
     {
         StartCoroutine(SignInCoroutine());
+    }
+    private void Logout() // id, password 초기화, inventory UI 비활성화, Login UI 활성화
+    {
+        id = string.Empty;
+        password = string.Empty;
+        InvenUImg.gameObject.SetActive(false);// inventory UI 비활성화
+        UImg.SetLoginMenuActivation(true);
     }
     private void AllInfoCheck()
     {
@@ -133,14 +146,35 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator GetInventory()
+    private IEnumerator GetInventory() //inventory slot 정보 가져옴
     {
+        Debug.Log("접속할 ID :" + id);
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
-        using (UnityWebRequest www = UnityWebRequest.Post(loginUri, form)) //post는 보안 //get은 속도
+        form.AddField("Id", id);
+        using (UnityWebRequest www = UnityWebRequest.Post(/*inventory*/loginUri, form)) //!!!!!!!!!!Uri 바꾸기!!!!!!!!!!!!!!!
         {
             yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError ||
+                www.result == UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                string InventoryItems = www.downloadHandler.text;
+                Debug.Log(www.downloadHandler.text);
+                List<Inventoryslot> invenslot = JsonConvert.DeserializeObject<List<Inventoryslot>>(InventoryItems);
+
+                foreach (Inventoryslot InventoryItem in invenslot)
+                {
+                    Debug.Log(InventoryItem.ItemNum + " : " + InventoryItem.EA);
+                    //디버그 로그가 잘 확인되면 invenslot에 정보가 잘 담긴 것
+                }
+            }
         }
-    } //인벤토리 정보를 서버에서 가져옴
+
+    }
     private IEnumerator SignUpCoroutine() //가져온 정보들을 서버에 전달, 회원가입 코루틴 
     {
         id = UImg.Id;//UI에 적힌 Id를 id에 복사
