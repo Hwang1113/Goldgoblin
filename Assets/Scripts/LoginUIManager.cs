@@ -81,6 +81,7 @@ public class LoginUIManager : MonoBehaviour
     public int RecoveryInd { get{ return recoveryInd; } }
     #endregion
 
+    public GameObject findPasswordGo = null;
     #region UI 오브젝트 참조 변수
     [SerializeField, Header("--- UI Reference")]
     private PrintError login_Error = null;
