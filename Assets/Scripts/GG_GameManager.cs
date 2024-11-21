@@ -26,11 +26,6 @@ public class GG_GameManager : MonoBehaviour
     private string AR_A = string.Empty; // 복구답변 문자열
 
     //player item db 받아온걸 저장할 데이터형들
-    private class InventoryitemDB
-    {
-        private string itemNum { get; set; } //아이템넘버 배열
-        private int ea { get; set; } // 아이템 갯수
-    }
 
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
@@ -72,9 +67,6 @@ public class GG_GameManager : MonoBehaviour
 
             return;
         }
-
-
-
         if (isDifferentId == true)
         {
             StartCoroutine(SignUpCoroutine());
@@ -205,7 +197,7 @@ public class GG_GameManager : MonoBehaviour
             {
                 //string CheckId = www.downloadHandler.text.Replace("\uFEFF", "");
                 //string CheckId = www.downloadHandler.text; //오염된 데이터
-                string CheckId = "This  is    a   test&nbsp;string  with  unnecessary   spaces.";
+                string CheckId = "This  is    a   test&nbsp;string  with  unnecessary   spaces."; 
                 string pattern = @"(\s|\u00A0)+"; // 정규표현식 패턴 지정 
                 CheckId = Regex.Replace(CheckId, pattern, " ").Trim();//정화
 
