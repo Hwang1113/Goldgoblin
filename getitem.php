@@ -19,7 +19,7 @@ $result = $conn->query($sql);
     echo "[";
     while($row = $result->fetch_assoc())
         {
-            echo "{'ItemNumber': '".$row['ItemNumber']."', 'Name': '" .$row['Name']. "', 'Des': '".$row['Des']."', 'Rarity': '".$row['Rarity']."', 'Icon': '".$row['Icon']."'}";
+            echo "{'ItemNumber': '".$row['ItemNumber']."', 'Name': '" .$row['Name']. "', 'Des': '".$row['Des']."', 'Rarity': '".$row['Rarity']."', 'Icon': '".$row['Icon']."'},";
         }
     echo "]";
  }
