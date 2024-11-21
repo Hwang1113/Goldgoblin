@@ -48,7 +48,8 @@ public class GG_GameManager : MonoBehaviour
     private void AllInfoCheck()
     {
         if (isDifferentId && UImg.IsIdFormatCorrect() && UImg.IsPwFormatCorrect() &&
-            UImg.IsPwCheckCorrect() && UImg.IsBirthDateFormatCorrect())  //괄호안에 조건 모두 넣기 차례대로 아이디중복, 아이디 포맷,비밀번호 포맷,비밀번호확인, 생년월일
+            UImg.IsPwCheckCorrect() && UImg.IsBirthDateFormatCorrect() && AR_A != string.Empty)  
+            //괄호안에 조건 모두 넣기 차례대로 아이디중복, 아이디 포맷,비밀번호 포맷,비밀번호확인, 생년월일 , 질문 답변을 적었으면
         {
             isAllInfoChecked = true;
         }
@@ -67,14 +68,8 @@ public class GG_GameManager : MonoBehaviour
 
             return;
         }
-        if (isDifferentId == true)
-        {
-            StartCoroutine(SignUpCoroutine());
-        }
-        else if (isDifferentId == false)
-        {
-            Debug.Log("Id 중복확인 후 회원가입 ");
-        }
+        StartCoroutine(SignUpCoroutine());
+
     }
     private void SameIdCheck()
     {
@@ -168,7 +163,7 @@ public class GG_GameManager : MonoBehaviour
                 string data = www.downloadHandler.text;
                 if (data == "0")    //아이디 생성 실패
                 {
-                    UImg.PrintLoginError();
+                    Debug.Log("계정 생성 실패");
                 }
                 else if (data == "1") // 계정 생성 성공
                 {
