@@ -35,7 +35,8 @@ public class GG_GameManager : MonoBehaviour
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
     private const string sameidUri = "http://127.0.0.1/sameid.php";
-    //private const string inventoryUri = "";
+    private const string getinvenUri = "http://127.0.0.1/getinven.php";
+
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class GG_GameManager : MonoBehaviour
         UImg.onSelectSignupIDInputfiled = IdCheckFalse; // ID Inputfield 를 클릭하면  isDifferentId = false; 
         UImg.onClickSignUpBtn = GoSignUp; // 로그인 창에서 SignUp 버튼을 누르면 GoSignUp(); 
         UImg.onClickLoginBtn = Login; //로그인 버튼을 누르면 Login() 실행
-        UImg.onClickBackToLoginBtn = GoLogin; //backtologin 버튼을 누르면 
+        UImg.onClickBackToLoginBtn = BacktoLogin; //backtologin 버튼을 누르면 
         InvenUImg.OnClickLogoutBtn = Logout; // 로그아웃
     } // 델리게이트를 통해 버튼 상호작용 구현
     private void Login()
@@ -104,7 +105,7 @@ public class GG_GameManager : MonoBehaviour
         UImg.SetLoginMenuActivation(false);
         UImg.SetSignupMenuActivation(true);
     }
-    private void GoLogin() // 회원가입창을 끈다, 로그인창을 킨다.
+    private void BacktoLogin() // 회원가입창을 끈다, 로그인창을 킨다.
     {
         UImg.SetSignupMenuActivation(false);
         UImg.SetLoginMenuActivation(true);
@@ -141,6 +142,8 @@ public class GG_GameManager : MonoBehaviour
                 {
                     Debug.Log("로그인 가능"); //InventoryUri 만들어서 호출해야할듯
                     StartCoroutine(GetInventory());
+
+                    //inventory UI 켜기 , 
                 }
 
             }
@@ -151,7 +154,7 @@ public class GG_GameManager : MonoBehaviour
         Debug.Log("접속할 ID :" + id);
         WWWForm form = new WWWForm(); //서버 전달 형태를 정함
         form.AddField("Id", id);
-        using (UnityWebRequest www = UnityWebRequest.Post(/*inventory*/loginUri, form)) //!!!!!!!!!!Uri 바꾸기!!!!!!!!!!!!!!!
+        using (UnityWebRequest www = UnityWebRequest.Post(/*inventory*/getinvenUri, form)) //!!!!!!!!!!Uri 바꾸기!!!!!!!!!!!!!!!
         {
             yield return www.SendWebRequest();
 
@@ -166,10 +169,14 @@ public class GG_GameManager : MonoBehaviour
                 Debug.Log(www.downloadHandler.text);
                 List<Inventoryslot> invenslot = JsonConvert.DeserializeObject<List<Inventoryslot>>(InventoryItems);
 
-                foreach (Inventoryslot InventoryItem in invenslot)
+                foreach (Inventoryslot InventoryItem in invenslot) 
+                    //invenslot(list)안에 있는 Inventoryslot클래스 형식의 정보 만큼 아래코드를 실행함
                 {
                     Debug.Log(InventoryItem.ItemNum + " : " + InventoryItem.EA);
                     //디버그 로그가 잘 확인되면 invenslot에 정보가 잘 담긴 것
+                    UImg.SetLoginMenuActivation(false);//로그인 UI 끄고
+                    InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
+
                 }
             }
         }
