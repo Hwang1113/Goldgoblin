@@ -1,0 +1,30 @@
+투구 
+Icons\\Equipment\\Iron Helmet
+
+체력 물약
+Icons\\Potion\\Red Potion 3
+
+마나 물약
+Icons\\Potion\\Blu Potion 2
+
+도끼 
+Icons\\Weapon & Tool\\Axe
+
+방패 
+Icons\\Weapon & Tool\\Wooden Shield
+
+검
+Icons\\Weapon & Tool\\Iron Sword
+
+완드 
+Icons\\Weapon & Tool\\Magic Wand
+
+열쇠 
+Icons\\Misc\\Iron Key
+
+지도
+Icons\\Misc\\Map
+
+신발
+Icons\\Equipment\\Leather Boot
+
