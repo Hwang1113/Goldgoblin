@@ -53,6 +53,11 @@ public class FindPasswordUI : MonoBehaviour
         get { return loginMenu; }
     }
 
+    private void Awake()
+    {
+        printErr = GetComponent<PrintError>();
+    }
+
     private void OnDisable()
     {
         Init();

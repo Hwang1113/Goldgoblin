@@ -41,6 +41,7 @@ public class GG_GameManager : MonoBehaviour
     private const string sameidUri = "http://127.0.0.1/sameid.php";
     private const string getinvenUri = "http://127.0.0.1/getinven.php";
     private const string getitemUri = "http://127.0.0.1/getitem.php";
+    private const string insertinvenUri = "http://127.0.0.1/insertinven.php";
 
 
     private void Start()
@@ -157,7 +158,6 @@ public class GG_GameManager : MonoBehaviour
                 {
                     Debug.Log("로그인 가능"); //InventoryUri 만들어서 호출해야할듯
                     StartCoroutine(GetInventory());
-
                     //inventory UI 켜기 , 
                 }
 
@@ -197,17 +197,9 @@ public class GG_GameManager : MonoBehaviour
                 InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
                 for(int i = 0; i < invenslot.Count; i++)
                 {
-                    Debug.Log(itemDatas[int.Parse(invenslot[i].ItemNum) - 1].Icon);
                     InvenUImg.SetItemSlotUI(i, itemDatas[int.Parse(invenslot[i].ItemNum) - 1].Icon, int.Parse(invenslot[i].EA));
+                    InvenUImg.SetItemSlotActive(i, true);
                 }
-
-                for(int i = 0; i < itemDatas[int.Parse(invenslot[4].ItemNum) - 1].Icon.Length; ++i)
-                {
-                    Debug.Log(itemDatas[int.Parse(invenslot[4].ItemNum) - 1].Icon[i]);
-                }
-                    
-                
-                // List<Inventoryslot> newList = invenslot.OrderBy(p => p.ItemNum).ToList();
 
             }
         }
@@ -262,9 +254,34 @@ public class GG_GameManager : MonoBehaviour
                     //MyInventory =JsonConvert.DeserializeObject<List<InventoryitemDB>>(data);
                     //json 형식으로 작성된 "문자열" 아이템 정보를 받아와서 역직렬화를 통해 게임매니저가 아이템DB 받아옴, 작성해야함
                 }
+
+                StartCoroutine(InsertInvenCoroutine());
             }
         }
     }
+
+    private IEnumerator InsertInvenCoroutine()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("Id", id);
+
+        using (UnityWebRequest www = UnityWebRequest.Post(insertinvenUri, form)) //post는 보안 //get은 속도
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError ||
+                www.result == UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.LogFormat("인벤토리 생성 성공 : {0}", id);
+            }
+        }
+
+    }
+
     private IEnumerator SameIdCheckCoroutine() //아이디 중복방지 코루틴
     {
         id = UImg.Id;
