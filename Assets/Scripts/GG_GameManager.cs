@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions; //정규표현식
 using Newtonsoft.Json;
 using static GG_ItemManager;
+using NUnit.Framework;
 
 
 public class GG_GameManager : MonoBehaviour
@@ -168,7 +169,7 @@ public class GG_GameManager : MonoBehaviour
                 string InventoryItems = www.downloadHandler.text;
                 Debug.Log(www.downloadHandler.text);
                 List<Inventoryslot> invenslot = JsonConvert.DeserializeObject<List<Inventoryslot>>(InventoryItems);
-
+                invenslot.Sort((Inventoryslot a, Inventoryslot b) => { return a.CompareTo(b); }); // 정렬 알고리즘(invenslot(list))
                 foreach (Inventoryslot InventoryItem in invenslot) 
                     //invenslot(list)안에 있는 Inventoryslot클래스 형식의 정보 만큼 아래코드를 실행함
                 {
@@ -176,8 +177,9 @@ public class GG_GameManager : MonoBehaviour
                     //디버그 로그가 잘 확인되면 invenslot에 정보가 잘 담긴 것
                     UImg.SetLoginMenuActivation(false);//로그인 UI 끄고
                     InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
-
                 }
+                // List<Inventoryslot> newList = invenslot.OrderBy(p => p.ItemNum).ToList();
+
             }
         }
 

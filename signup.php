@@ -19,8 +19,8 @@ $conn = new mysqli($servername,
 								 $dbname);
 
 // $sql = "SELECT * FROM tb_sign WHERE Id = '".$UserId."'";
-$Insertsql = "INSERT INTO tb_sign(Id, Password, Birthday, AR_Q, AR_A)
-		VALUES('".$UserId."','".$UserPassword."','".$UserNickname."','".$UserAR_Q."','".$UserAR_A."')";
+$Insertsql = "INSERT INTO tb_sign(Id, Password, Nickname ,Birthday, AR_Q, AR_A)
+		VALUES('".$UserId."','".$UserPassword."','".$UserNickname."','".$UserBirthday."','".$UserAR_Q."','".$UserAR_A."')";
 // $Insertsql = "INSERT INTO tb_sign(Id)
 // 		VALUES('".$UserId."')";
 $conn->query($Insertsql);

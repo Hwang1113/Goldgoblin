@@ -16,7 +16,7 @@ $result = $conn->query($sql);
 
 if($result->num_rows > 0 ){
     while($row = $result->fetch_assoc())
-    echo $row["ItemSlot"];    
+    echo $row["InvenSlot"];    
     // $row = $result->fetch_assoc()
     // echo $row["ItemSlot"];
 }
