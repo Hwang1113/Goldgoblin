@@ -1,0 +1,5 @@
+INSERT INTO `tb_inven`(`Id`, `ItemSlot`) VALUES ('aaaa1111','[{"ItemNum": "1", "EA": "5"},{"ItemNum": "2", "EA": "3"},{"ItemNum": "5", "EA": "6"},{"ItemNum": "7", "EA": "4"},{"ItemNum": "9", "EA": "2"}]');
+
+INSERT INTO `tb_inven`(`Id`, `ItemSlot`) VALUES ('bbbb2222','[{"ItemNum": "4", "EA": "55"},{"ItemNum": "3", "EA": "13"},{"ItemNum": "1", "EA": "9"},{"ItemNum": "10", "EA": "2"},{"ItemNum": "8", "EA": "3"}]');
+
+INSERT INTO `tb_inven`(`Id`, `ItemSlot`) VALUES ('cccc3333','[{"ItemNum": "1", "EA": "54"},{"ItemNum": "3", "EA": "11"},{"ItemNum": "4", "EA": "63"},{"ItemNum": "8", "EA": "23"},{"ItemNum": "5", "EA": "12"}]');
