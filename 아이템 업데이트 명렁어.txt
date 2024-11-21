@@ -1,0 +1,10 @@
+UPDATE `tb_item` SET `ItemNumber`='1', `Name`='체력 물약', `Des`='체력 회복', `Rarity`='흔함', `Icon`='Icons/Potion/Red Potion 3' WHERE `ItemNumber` = 1;
+UPDATE `tb_item` SET `ItemNumber`='2', `Name`='방패', `Des`='막기', `Rarity`='흔하지 않음', `Icon`='Icons/Weapon & Tool/Wooden Shield' WHERE `ItemNumber` = 2;
+UPDATE `tb_item` SET `ItemNumber`='3', `Name`='검', `Des`='찌르기', `Rarity`='흔하지 않음', `Icon`='Icons/Weapon & Tool/Iron Sword' WHERE `ItemNumber` = 3;
+UPDATE `tb_item` SET `ItemNumber`='4', `Name`='투구', `Des`='방어력 증가', `Rarity`='희귀함', `Icon`='Icons/Equipment/Iron Helmet' WHERE `ItemNumber` = 4;
+UPDATE `tb_item` SET `ItemNumber`='5', `Name`='마나 물약', `Des`='마나 회복', `Rarity`='흔하지 않음', `Icon`='Icons/Potion/Blue Potion 2' WHERE `ItemNumber` = 5;
+UPDATE `tb_item` SET `ItemNumber`='6', `Name`='도끼', `Des`='강한 공격', `Rarity`='흔하지 않음', `Icon`='Icons/Weapon & Tool/Axe' WHERE `ItemNumber` = 6;
+UPDATE `tb_item` SET `ItemNumber`='7', `Name`='완드', `Des`='마법 공격', `Rarity`='희귀함', `Icon`='Icons/Weapon & Tool/Magic Wand' WHERE `ItemNumber` = 7;
+UPDATE `tb_item` SET `ItemNumber`='8', `Name`='열쇠', `Des`='문을 열 수 있다.', `Rarity`='흔하지 않음', `Icon`='Icons/Misc/ron Key' WHERE `ItemNumber` = 8;
+UPDATE `tb_item` SET `ItemNumber`='9', `Name`='지도', `Des`='맵을 볼 수 있다.', `Rarity`='희귀함', `Icon`='Icons/Misc/Map' WHERE `ItemNumber` = 9;
+UPDATE `tb_item` SET `ItemNumber`='10', `Name`='신발', `Des`='달리기 속도 증가', `Rarity`='희귀함', `Icon`='Icons/Equipment/Leather Boot' WHERE `ItemNumber` = 10;
