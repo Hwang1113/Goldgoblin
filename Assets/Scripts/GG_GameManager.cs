@@ -81,6 +81,11 @@ public class GG_GameManager : MonoBehaviour
     {
         StartCoroutine(SameIdCheckCoroutine());            // 코루틴 안에서 중복된지 확인해서 코루틴에서 isDifferentId를 false나 true로 바꿔줌
     }// 아이디 중복방지 코루틴을 돌린다.
+    private void IdCheckFalse() //isDifferentId = false; 로 만듬
+    {
+        isDifferentId = false;
+        Debug.Log("아이디 입력 후 중복체크를 누르시오");
+    }
     private void GoSignUp() //로그인 창을 끈다, 회원가입창을 킨다.
     {
         UImg.SetLoginMenuActivation(false);
@@ -90,11 +95,6 @@ public class GG_GameManager : MonoBehaviour
     {
         UImg.SetSignupMenuActivation(false);
         UImg.SetLoginMenuActivation(true);
-    }
-    private void IdCheckFalse() //isDifferentId = false; 로 만듬
-    {
-        isDifferentId = false;
-        Debug.Log("아이디 입력 후 중복체크를 누르시오");
     }
     //////////////////////////////////////////////////
     //밑으로는 DB데이터 전달 관련 코루틴만
