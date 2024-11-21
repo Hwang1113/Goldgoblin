@@ -1,7 +1,0 @@
-diff a/Assets/Scripts/GG_GameManager.cs b/Assets/Scripts/GG_GameManager.cs	(rejected hunks)
-@@ -181,5 +181,4 @@
- 
-     private IEnumerator SameIdCheckCoroutine(string _id) //??대 以蹂듬갑吏 肄猷⑦?     {
--
-         WWWForm form = new WWWForm(); //?踰 ?????瑜????         form.AddField("Id", _id); //?踰? id瑜??寃⑥?
-         using (UnityWebRequest www = UnityWebRequest.Post(sameidUri, form)) 
