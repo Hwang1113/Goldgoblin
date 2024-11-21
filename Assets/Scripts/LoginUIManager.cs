@@ -129,6 +129,11 @@ public class LoginUIManager : MonoBehaviour
         birthDate = _birthDate;
     }
 
+    public void InputNickname(string _nickname)
+    {
+        nickname = _nickname;
+    }
+
     public void OnClickSubmit()
     {
         onClickSubmitBtn?.Invoke();
