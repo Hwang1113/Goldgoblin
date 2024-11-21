@@ -4,6 +4,11 @@ public class ItemBagUI : MonoBehaviour
 {
     private ItemSlotUI[] itemSlots = null;
 
+    public ItemSlotUI[] ItemSlots
+    {
+        get { return itemSlots; }
+    }
+
     private void Awake()
     {
         itemSlots = GetComponentsInChildren<ItemSlotUI>();
