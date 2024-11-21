@@ -34,6 +34,7 @@ public class GG_GameManager : MonoBehaviour
 
     List<ItemData> itemDatas = null;
     //player item db 받아온걸 저장할 데이터형들
+    List<Inventoryslot> invenslot = null;
 
     private const string loginUri = "http://127.0.0.1/login.php";
     private const string signupUri = "http://127.0.0.1/signup.php";
@@ -52,6 +53,8 @@ public class GG_GameManager : MonoBehaviour
         UImg.onClickBackToLoginBtn = BacktoLogin; //backtologin 버튼을 누르면 
         UImg.onClickFindPasswordBtn = GoFindPasword;
         InvenUImg.OnClickLogoutBtn = Logout; // 로그아웃
+
+        StartCoroutine(CallAllItemDB());
 
     } // 델리게이트를 통해 버튼 상호작용 구현
     private void Login()
@@ -178,8 +181,9 @@ public class GG_GameManager : MonoBehaviour
             else
             {
                 string InventoryItems = www.downloadHandler.text;
+
                 Debug.Log(www.downloadHandler.text);
-                List<Inventoryslot> invenslot = JsonConvert.DeserializeObject<List<Inventoryslot>>(InventoryItems);
+                invenslot = JsonConvert.DeserializeObject<List<Inventoryslot>>(InventoryItems);
                 invenslot.Sort((Inventoryslot a, Inventoryslot b) => { return a.CompareTo(b); }); // 정렬 알고리즘(invenslot(list))
                 foreach (Inventoryslot InventoryItem in invenslot) 
                     //invenslot(list)안에 있는 Inventoryslot클래스 형식의 정보 만큼 아래코드를 실행함
@@ -187,16 +191,22 @@ public class GG_GameManager : MonoBehaviour
                     Debug.Log(InventoryItem.ItemNum + " : " + InventoryItem.EA);
                     //디버그 로그가 잘 확인되면 invenslot에 정보가 잘 담긴 것
                 }
-                StartCoroutine(CallAllItemDB());
 
                 UImg.SetLoginMenuActivation(false);//로그인 UI 끄고
-                //반복 foreach (Inventoryslot InventoryItem in invenslot)
-                //1..slot prefab을 instantiate(조건문 : 아이템이 없으면 return을 통해서 반복문 탈출) 
-                //2..Icon을 ItemNum을 통해서 찾는다
-                //3..갯수를 EA를 통해서 적는다
-
+                
                 InvenUImg.gameObject.SetActive(true);//인벤토리 UI 켜기
+                for(int i = 0; i < invenslot.Count; i++)
+                {
+                    Debug.Log(itemDatas[int.Parse(invenslot[i].ItemNum) - 1].Icon);
+                    InvenUImg.SetItemSlotUI(i, itemDatas[int.Parse(invenslot[i].ItemNum) - 1].Icon, int.Parse(invenslot[i].EA));
+                }
 
+                for(int i = 0; i < itemDatas[int.Parse(invenslot[4].ItemNum) - 1].Icon.Length; ++i)
+                {
+                    Debug.Log(itemDatas[int.Parse(invenslot[4].ItemNum) - 1].Icon[i]);
+                }
+                    
+                
                 // List<Inventoryslot> newList = invenslot.OrderBy(p => p.ItemNum).ToList();
 
             }
@@ -307,7 +317,7 @@ public class GG_GameManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator CallAllItemDB() // tb_item 
+    private IEnumerator CallAllItemDB() // tb_item에 접속해서 다 불러온다.
     {
         using (UnityWebRequest www = UnityWebRequest.PostWwwForm(getitemUri, string.Empty))
         {

@@ -37,6 +37,11 @@ public class ItemSlotUI : MonoBehaviour, IPointerClickHandler
     }
     public void SetItemSlot(string _imgPath, int _count)
     {
+        Sprite mySprite = Resources.Load<Sprite>(_imgPath);
+
+        if (mySprite == null) Debug.Log("Null!!!");
+        else Debug.Log(mySprite.name);
+
         image_ItemIcon.sprite = Resources.Load<Sprite>(_imgPath);
         text_ItemCount.text = string.Format("X {0}", _count);
     }
